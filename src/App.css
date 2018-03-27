@@ -31,6 +31,8 @@
   }
 }
 
+/*  */
+
 @keyframes donut-spin {
   0% {
     transform: rotate(0deg);
@@ -59,4 +61,39 @@
   height: 30px;
   margin: 0 auto;
   animation: donut-spin 1.2s linear infinite;
+}
+
+.homepage-container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.homepage-container {
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+  grid-template-rows: 10vh 80vh 10vh;
+}
+
+.homepage-top {
+  background-color: white;
+}
+
+.homepage-center-left {
+  background-color: white;
+}
+
+.homepage-center-right {
+  background-color: white;
+}
+
+.homepage-center {
+  border-style: solid;
+  border-width: 2px;
+  background-image: url('./assets/hp.jpg');
+}
+
+.homepage-bottom {
+  background-color: white;
 }

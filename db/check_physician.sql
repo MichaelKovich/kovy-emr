@@ -1,0 +1,1 @@
+SELECT users.physician FROM users WHERE email = $1;

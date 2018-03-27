@@ -1,26 +1,28 @@
 const userAuthentication = (req, res, next) => {
   const db = req.app.get('db');
 
+  // If no user object exists on the request, the user is unauthorized.
   if (!req.user) {
-    console.log('Unauthorized!');
     return res.status(401).json({message: 'Unauthorized.'});
   }
+
+  // Checking to see if the user's email address exists in the database
+  // Their email address is a suitable unique identifier as its restricted to unique values in the DB.
 
   db
     .check_user([req.user.emails[0].value])
     .then((res) => {
       if (res.length < 1) {
-        console.log('Carry on to registerUser!');
+        // If it does not, then we'll register the user by adding them to the DB.
         db
           .create_user([
+            // Creating a user in the database with the values provided by Auth0
             req.user.emails[0].value,
             req.user.name.givenName,
             req.user.name.familyName,
             req.user.picture,
           ])
           .then((user) => {
-            // The user's unique ID is user[0].userid;
-            console.log('Registration Successful!');
             next();
           })
           .catch((err) => {
@@ -28,11 +30,12 @@ const userAuthentication = (req, res, next) => {
             return res.status(500).json({message: 'Registration Failed!'});
           });
       } else {
-        console.log("User exists! Let's continue.");
+        // If the user exists, we can continue onward because we'll set the email
+        // to the user object on session via /authentication/me (index.js)
         next();
       }
     })
-    .catch();
+    .catch(err => console.log(err));
 };
 
 module.exports = {

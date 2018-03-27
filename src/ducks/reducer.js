@@ -1,18 +1,26 @@
 import axios from 'axios';
-import react from 'react';
+import React from 'react';
 import Redirect from 'react-router';
 
 const initialState = {
   username: '', // User's email address, a unique identifier
   isLoading: false, // Indicates whether the application is currently loading content
+  physician: '', // Indicates whether the current user is a physician (as opposed to a patient)
+  patients: [], // An array of all non-physician users in the database.
+  medicationsMaster: [], // An array made up of all rows from Users and Medications joined.
 };
 
 // AUTHENTICATION ACTION TYPES
 const INITIAL_AUTHENTICATION = 'INITIAL_AUTHENTICATION';
 const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
+const PHYSICIAN_AUTHENTICATION = 'PHYSICIAN_AUTHENTICATION';
 
-// APPLICATION ACTION TYPES
-// const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
+// DATA MANIPULATION AND RETRIEVAL ACTION TYPES
+const RETRIEVE_PATIENTS = 'RETRIEVE_PATIENTS';
+const RETRIEVE_MEDICATIONS_MASTER = 'RETRIEVE_MEDICATIONS_MASTER';
+
+// PROVIDER DASHBOARD ACTION TYPES
+//
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -22,11 +30,31 @@ export default function reducer(state = initialState, action) {
     case INITIAL_AUTHENTICATION:
       return {...state, username: action.payload};
 
+    case PHYSICIAN_AUTHENTICATION:
+      return {...state, physician: action.payload};
+
     case `${AUTHENTICATE_USER}_PENDING`:
       return {...state, isLoading: true};
 
     case `${AUTHENTICATE_USER}_FULFILLED`:
-      return {...state, username: action.payload, isLoading: false};
+      return {
+        ...state,
+        username: action.payload.user,
+        physician: action.payload.physician,
+        isLoading: false,
+      };
+
+    case `${RETRIEVE_PATIENTS}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_PATIENTS}_FULFILLED`:
+      return {...state, patients: action.payload, isLoading: false};
+
+    case `${RETRIEVE_MEDICATIONS_MASTER}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_MEDICATIONS_MASTER}_FULFILLED`:
+      return {...state, medicationsMaster: action.payload, isLoading: false};
 
     default:
       return state;
@@ -34,17 +62,36 @@ export default function reducer(state = initialState, action) {
 }
 
 // ACTION CREATORS
-export function authenticationInitial(username) {
-  return {
-    type: INITIAL_AUTHENTICATION,
-    payload: username,
-  };
-}
+export const authenticationInitial = username => ({
+  type: INITIAL_AUTHENTICATION,
+  payload: username,
+});
+
+export const physicianAuthentication = physician => ({
+  type: PHYSICIAN_AUTHENTICATION,
+  payload: physician,
+});
 
 export const userAuthenticate = () => ({
   type: AUTHENTICATE_USER,
   payload: axios
     .get('/authentication/session')
-    .then(response => response.data.emails[0].value)
+    .then(response => response.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrievePatients = () => ({
+  type: RETRIEVE_PATIENTS,
+  payload: axios
+    .get('/providers/data/patients')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveMedicationsMaster = () => ({
+  type: RETRIEVE_MEDICATIONS_MASTER,
+  payload: axios
+    .get('/providers/data/medications-master')
+    .then(res => res.data)
     .catch(err => console.log(err)),
 });

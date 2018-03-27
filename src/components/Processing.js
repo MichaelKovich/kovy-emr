@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {authenticationInitial} from '../ducks/reducer';
+import {authenticationInitial, physicianAuthentication} from '../ducks/reducer';
 import {connect} from 'react-redux';
 
-import Loading from '../subcomponents/Loading';
+import Loading from './subcomponents/Loading';
 import '../App.css';
 
 class Processing extends Component {
@@ -15,10 +15,15 @@ class Processing extends Component {
     axios
       .get('/authentication/me')
       .then((response) => {
-        this.props.authenticationInitial(response.data);
+        this.props.authenticationInitial(response.data.user);
+        this.props.physicianAuthentication(response.data.physician);
       })
       .then((response) => {
-        this.props.history.replace('/dashboard');
+        if (this.props.physician) {
+          this.props.history.push('/providers');
+        } else {
+          this.props.history.push('/patients');
+        }
       })
       .catch(err => console.log(err));
   }
@@ -29,4 +34,4 @@ class Processing extends Component {
 }
 
 const mapStateToProps = state => state;
-export default connect(mapStateToProps, {authenticationInitial})(Processing);
+export default connect(mapStateToProps, {authenticationInitial, physicianAuthentication})(Processing);

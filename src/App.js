@@ -1,5 +1,5 @@
 import React from 'react';
-import routes from './subcomponents/routes';
+import routes from './routes';
 
 function app() {
   return <div>{routes}</div>;

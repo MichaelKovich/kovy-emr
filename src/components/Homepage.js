@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import Button from '../subcomponents/Button';
+import Button from './subcomponents/Button';
 
 class Homepage extends Component {
   constructor(props) {
@@ -11,9 +11,21 @@ class Homepage extends Component {
   render() {
     return (
       <div className="homepage-container">
-        <a href="/authentication/login">
-          <Button title="Login" />
-        </a>
+        <div className="homepage-top" />
+        <div className="homepage-top" />
+        <div className="homepage-top" />
+        <div className="homepage-center-left" />
+        <div className="homepage-center">
+          <div>
+            <a href="/authentication/login">
+              <Button title="Login" />
+            </a>
+          </div>
+        </div>
+        <div className="homepage-center-right" />
+        <div className="homepage-bottom" />
+        <div className="homepage-bottom" />
+        <div className="homepage-bottom" />
       </div>
     );
   }

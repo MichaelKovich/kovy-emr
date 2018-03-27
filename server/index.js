@@ -13,11 +13,20 @@ const passport = require('passport');
 const strategy = require(`${__dirname}/strategy`);
 const {DOMAIN, CLIENT_ID, CLIENT_SECRET} = process.env;
 
-// CONTROLLERS
-const {userAuthentication} = require(`${__dirname}/controllers/userAuthenticationController`);
+// USER AUTHENTICATION CONTROLLERS
+const {userAuthentication} = require(`${__dirname}/controllers/auth/userAuthenticationController`);
+const {sessionControl} = require(`${__dirname}/controllers/auth/sessionController`);
+const {meAuthentication} = require(`${__dirname}/controllers/auth/meController`);
+
+// DATA MANIPULATION AND RETRIEVAL CONTROLLERS
+const {getPatients} = require(`${__dirname}/controllers/data/patientsController`);
+const {addMedication} = require(`${__dirname}/controllers/data/medicationsController`);
+const {getMedicationsMaster} = require(`${__dirname}/controllers/data/medicationsController`);
 
 // MIDDLEWARE
 const {sessionChecker} = require(`${__dirname}/middleware/sessionChecker`);
+const {physicianChecker} = require(`${__dirname}/middleware/physicianChecker`);
+const {dashboardRouter} = require(`${__dirname}/middleware/dashboardRouter`);
 
 // INSTANTIATION OF EXPRESS:
 const app = express();
@@ -30,13 +39,7 @@ app.use(cors());
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false, // Double check what this means.
-  /* Forces a session that is "uninitialized" to be saved to the store.
-  A session is uninitialized when it is new but not modified.
-  Choosing false is useful for implementing login sessions,
-  reducing server storage usage, or complying with laws that require
-  permission before setting a cookie. Choosing false will also help
-  with race conditions where a client makes multiple parallel requests without a session. */
+  saveUninitialized: false,
   cookie: {
     httpOnly: false,
     maxAge: 1210000000, // Two weeks in miliseconds.
@@ -69,28 +72,30 @@ app.get(
   }),
 );
 
-app.get('/authentication/me', userAuthentication, (req, res, next) => {
-  console.log('Final Authentication Stage!');
-  req.session.user = req.user;
-  res.status(200).json(req.user.emails[0].value);
-});
+app.get('/processing', dashboardRouter);
+app.get('/authentication/me', userAuthentication, meAuthentication);
+app.get('/authentication/session', sessionControl);
 
-app.get('/authentication/session', (req, res, next) => {
-  if (req.session.user) {
-    res.status(200).json(req.session.user);
-  } else {
-    res.redirect('/');
-  }
-});
+// PATIENT FRONT-END ROUTES
+app.get('/patients', sessionChecker, dashboardRouter);
 
-app.get('/processing', (req, res, next) => {
-  res.sendFile(path.join(`${__dirname}/../build/index.html`));
-});
+// PATIENT DATA ROUTES
+// FIRST ENTRY HERE
 
-// DASHBOARD ROUTES
-app.get('/dashboard', sessionChecker, (req, res, next) => {
-  res.sendFile(path.join(`${__dirname}/../build/index.html`));
-});
+// PROVIDER FRONT-END ROUTES
+app.get('/providers', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/medications/add', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/medications/update', sessionChecker, physicianChecker, dashboardRouter);
+
+// PROVIDER DATA ROUTES
+app.get('/providers/data/patients', sessionChecker, physicianChecker, getPatients);
+app.get(
+  '/providers/data/medications-master',
+  sessionChecker,
+  physicianChecker,
+  getMedicationsMaster,
+);
+app.post('/providers/data/add-medication', sessionChecker, physicianChecker, addMedication);
 
 // LISTENING
 const port = process.env.PORT || 3000;

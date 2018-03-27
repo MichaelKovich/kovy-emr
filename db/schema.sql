@@ -41,6 +41,21 @@ CREATE TABLE medications
   prescribed   BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE visits
+(
+  visitid  SERIAL NOT NULL
+    CONSTRAINT visits_pkey
+    PRIMARY KEY,
+  type     VARCHAR(80),
+  date     VARCHAR(40),
+  patient  INTEGER
+    CONSTRAINT visits_patient_fkey
+    REFERENCES users,
+  provider INTEGER
+    CONSTRAINT visits_provider_fkey
+    REFERENCES users
+);
+
 -- AUTO0 Return:
 -- {
 --   "sub": "linkedin|Tp3uxBozeo",    --   identity provider id}|{unique id in the provider}
