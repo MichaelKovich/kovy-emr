@@ -7,7 +7,9 @@ const initialState = {
   isLoading: false, // Indicates whether the application is currently loading content
   physician: '', // Indicates whether the current user is a physician (as opposed to a patient)
   patients: [], // An array of all non-physician users in the database.
+  providers: [], // An array of all provider-permissioned users in the database.
   medicationsMaster: [], // An array made up of all rows from Users and Medications joined.
+  visitsMaster: [], // An array made up of all rows from Users, Visits, and Physicians joined.
 };
 
 // AUTHENTICATION ACTION TYPES
@@ -17,10 +19,9 @@ const PHYSICIAN_AUTHENTICATION = 'PHYSICIAN_AUTHENTICATION';
 
 // DATA MANIPULATION AND RETRIEVAL ACTION TYPES
 const RETRIEVE_PATIENTS = 'RETRIEVE_PATIENTS';
+const RETRIEVE_PROVIDERS = 'RETRIEVE_PROVIDERS';
 const RETRIEVE_MEDICATIONS_MASTER = 'RETRIEVE_MEDICATIONS_MASTER';
-
-// PROVIDER DASHBOARD ACTION TYPES
-//
+const RETRIEVE_VISITS_MASTER = 'RETRIEVE_VISITS_MASTER';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -50,11 +51,23 @@ export default function reducer(state = initialState, action) {
     case `${RETRIEVE_PATIENTS}_FULFILLED`:
       return {...state, patients: action.payload, isLoading: false};
 
+    case `${RETRIEVE_PROVIDERS}_PENDING`:
+      return {...state, isloading: true};
+
+    case `${RETRIEVE_PROVIDERS}_FULFILLED`:
+      return {...state, providers: action.payload, isloading: false};
+
     case `${RETRIEVE_MEDICATIONS_MASTER}_PENDING`:
       return {...state, isLoading: true};
 
     case `${RETRIEVE_MEDICATIONS_MASTER}_FULFILLED`:
       return {...state, medicationsMaster: action.payload, isLoading: false};
+
+    case `${RETRIEVE_VISITS_MASTER}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_VISITS_MASTER}_FULFILLED`:
+      return {...state, visitsMaster: action.payload, isLoading: false};
 
     default:
       return state;
@@ -88,10 +101,26 @@ export const retrievePatients = () => ({
     .catch(err => console.log(err)),
 });
 
+export const retrieveProviders = () => ({
+  type: RETRIEVE_PROVIDERS,
+  payload: axios
+    .get('/providers/data/providers')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
 export const retrieveMedicationsMaster = () => ({
   type: RETRIEVE_MEDICATIONS_MASTER,
   payload: axios
     .get('/providers/data/medications-master')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveVisitsMaster = () => ({
+  type: RETRIEVE_VISITS_MASTER,
+  payload: axios
+    .get('/providers/data/visits-master')
     .then(res => res.data)
     .catch(err => console.log(err)),
 });

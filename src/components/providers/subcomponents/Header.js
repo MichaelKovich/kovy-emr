@@ -16,8 +16,8 @@ class Header extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-        <a className="navbar-brand" href="#">
-          Anteiku EMR (Prov)
+        <a className="navbar-brand" href="/providers">
+          Iyashi EMR (Prov)
         </a>
         <button
           className="navbar-toggler"
@@ -65,8 +65,11 @@ class Header extends Component {
                 <a className="dropdown-item" href="#">
                   Genomics
                 </a>
-                <a className="dropdown-item" href="#">
-                  Visits
+                <a className="dropdown-item" href="/providers/visits/add">
+                  Add Visits
+                </a>
+                <a className="dropdown-item" href="/providers/visits/update">
+                  Update Visits
                 </a>
               </div>
             </li>

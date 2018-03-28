@@ -12,6 +12,8 @@ import Patients from './components/patients/Patients';
 import Providers from './components/providers/Providers';
 import MedicationsAdd from './components/providers/MedicationsAdd';
 import MedicationsUpdate from './components/providers/MedicationsUpdate';
+import VisitsAdd from './components/providers/VisitsAdd';
+import VisitsUpdate from './components/providers/VisitsUpdate';
 
 export default (
   <Switch>
@@ -38,6 +40,24 @@ export default (
         </div>
       )}
       path="/providers/medications/update"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <VisitsAdd />
+        </div>
+      )}
+      path="/providers/visits/add"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <VisitsUpdate />
+        </div>
+      )}
+      path="/providers/visits/update"
     />
   </Switch>
 );

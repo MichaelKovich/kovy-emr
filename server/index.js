@@ -20,8 +20,13 @@ const {meAuthentication} = require(`${__dirname}/controllers/auth/meController`)
 
 // DATA MANIPULATION AND RETRIEVAL CONTROLLERS
 const {getPatients} = require(`${__dirname}/controllers/data/patientsController`);
+const {getProviders} = require(`${__dirname}/controllers/data/providersController`);
 const {addMedication} = require(`${__dirname}/controllers/data/medicationsController`);
 const {getMedicationsMaster} = require(`${__dirname}/controllers/data/medicationsController`);
+const {updateMedication} = require(`${__dirname}/controllers/data/medicationsController`);
+const {addVisit} = require(`${__dirname}/controllers/data/visitsController`);
+const {getVisitsMaster} = require(`${__dirname}/controllers/data/visitsController`);
+const {updateVisit} = require(`${__dirname}/controllers/data/visitsController`);
 
 // MIDDLEWARE
 const {sessionChecker} = require(`${__dirname}/middleware/sessionChecker`);
@@ -86,9 +91,12 @@ app.get('/patients', sessionChecker, dashboardRouter);
 app.get('/providers', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/medications/add', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/medications/update', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/visits/add', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/visits/update', sessionChecker, physicianChecker, dashboardRouter);
 
 // PROVIDER DATA ROUTES
 app.get('/providers/data/patients', sessionChecker, physicianChecker, getPatients);
+app.get('/providers/data/providers', sessionChecker, physicianChecker, getProviders);
 app.get(
   '/providers/data/medications-master',
   sessionChecker,
@@ -96,6 +104,10 @@ app.get(
   getMedicationsMaster,
 );
 app.post('/providers/data/add-medication', sessionChecker, physicianChecker, addMedication);
+app.put('/providers/data/update-medication', sessionChecker, physicianChecker, updateMedication);
+app.get('/providers/data/visits-master', sessionChecker, physicianChecker, getVisitsMaster);
+app.post('/providers/data/add-visit', sessionChecker, physicianChecker, addVisit);
+app.put('/providers/data/update-visit', sessionChecker, physicianChecker, updateVisit);
 
 // LISTENING
 const port = process.env.PORT || 3000;

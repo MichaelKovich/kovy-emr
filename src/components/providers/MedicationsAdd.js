@@ -21,32 +21,13 @@ class MedicationsAdd extends Component {
 
   componentWillMount() {
     this.props.retrievePatients();
-    // Query the DB using "prov_get_patients.sql" to get a full list of patients.
-    // Use this list of patients to populate the options in the form below.
-    // For editing medications...
-    // Query the DB using "prov_get_medications.sql" to get a full list of
-    // patients joined to the medications table
-    // This, use this list of patients to populate the options in the form below
-    // onSelect, update fields with the values from the medication.
-    // onSubmit, update fields as appropriate.
-    // Control this using local state.
-    // Move this to the reducer
-    // Set the data to state
-    // Map over the data:
-    // data[i].family_name, given_name, userid
-    // Set each element as an option below.
-    // {mappedPatients} ^^
-    // Include validation
-    // value = {this.state.selectedMedication}
-    // onSelect = update state
   }
 
   medicationUpdate() {
     const {
       userid, dosage, prescribed, medication_name,
     } = this.state;
-    // axios call to update the database with information on state
-    // /providers/data/add-medication
+
     axios
       .post('/providers/data/add-medication', {
         userid,
@@ -54,7 +35,7 @@ class MedicationsAdd extends Component {
         prescribed,
         medication_name,
       })
-      .then(console.log('Post Complete!'))
+      .then()
       .catch(err => console.log(err));
   }
 
@@ -67,7 +48,7 @@ class MedicationsAdd extends Component {
 
     return (
       <div className="medications-c2">
-        <form>
+        <form onSubmit={this.medicationUpdate}>
           <h2>Add Medication</h2>
           <hr />
           <div className="form-group">
@@ -109,7 +90,7 @@ class MedicationsAdd extends Component {
               <option value={false}>False</option>
             </select>
           </div>
-          <button type="submit" className="btn btn-secondary" onClick={this.medicationUpdate}>
+          <button type="submit" className="btn btn-secondary">
             Apply
           </button>
         </form>

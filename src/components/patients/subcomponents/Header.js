@@ -16,8 +16,8 @@ class Header extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-        <a className="navbar-brand" href="#">
-          Anteiku EMR
+        <a className="navbar-brand" href="/patients">
+          Iyashi EMR
         </a>
         <button
           className="navbar-toggler"
