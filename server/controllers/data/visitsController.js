@@ -32,8 +32,18 @@ const getVisitsMaster = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+const getVisits = (req, res, next) => {
+  const db = req.app.get('db');
+
+  db
+    .pat_get_visits([req.params.id])
+    .then(response => res.status(200).json(response))
+    .catch(err => console.log(err));
+};
+
 module.exports = {
   addVisit,
   updateVisit,
   getVisitsMaster,
+  getVisits,
 };

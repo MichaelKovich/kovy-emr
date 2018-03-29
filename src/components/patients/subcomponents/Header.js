@@ -62,7 +62,7 @@ class Header extends Component {
                 <a className="dropdown-item" href="#">
                   Genomics
                 </a>
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="/patients/visits">
                   Visits
                 </a>
               </div>

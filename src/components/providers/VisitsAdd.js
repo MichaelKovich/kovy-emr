@@ -92,6 +92,7 @@ class VisitsAdd extends Component {
               className="form-control"
               id="exampleFormControlTextarea1"
               required
+              maxLength="80"
               rows="1"
               onChange={event => this.setState({type: event.target.value})}
             />
@@ -102,6 +103,7 @@ class VisitsAdd extends Component {
               className="form-control"
               id="exampleFormControlTextarea1"
               required
+              maxLength="40"
               rows="1"
               placeholder="mm/dd/yyyy"
               onChange={event => this.setState({date: event.target.value})}

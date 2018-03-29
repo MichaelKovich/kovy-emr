@@ -1,3 +1,29 @@
+CREATE TABLE medications
+(
+  medicationid    SERIAL NOT NULL
+    CONSTRAINT medications_pkey
+    PRIMARY KEY,
+  patientid       INTEGER
+    CONSTRAINT medications_users_userid_fk
+    REFERENCES users,
+  dosage          VARCHAR(120),
+  prescribed      BOOLEAN DEFAULT FALSE,
+  medication_name VARCHAR(60)
+);
+
+CREATE TABLE messages
+(
+  messageid   SERIAL NOT NULL
+    CONSTRAINT messages_pkey
+    PRIMARY KEY,
+  recipientid INTEGER
+    CONSTRAINT messages_users_userid_fk
+    REFERENCES users,
+  senderid    INTEGER,
+  subject     VARCHAR(80),
+  content     TEXT
+);
+
 CREATE TABLE users
 (
   userid      SERIAL                NOT NULL
@@ -14,31 +40,6 @@ CREATE TABLE users
   city        VARCHAR(80),
   state       VARCHAR(2),
   zip         INTEGER
-);
-
-CREATE TABLE messages
-(
-  messageid   SERIAL NOT NULL
-    CONSTRAINT messages_pkey
-    PRIMARY KEY,
-  recipientid INTEGER
-    CONSTRAINT messages_users_userid_fk
-    REFERENCES users,
-  senderid    INTEGER,
-  subject     VARCHAR(80),
-  content     TEXT
-);
-
-CREATE TABLE medications
-(
-  medicationid SERIAL NOT NULL
-    CONSTRAINT medications_pkey
-    PRIMARY KEY,
-  patientid    INTEGER
-    CONSTRAINT medications_users_userid_fk
-    REFERENCES users,
-  dosage       VARCHAR(30),
-  prescribed   BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE visits

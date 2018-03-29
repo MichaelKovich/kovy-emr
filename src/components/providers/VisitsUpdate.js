@@ -153,6 +153,7 @@ class VisitsUpdate extends Component {
               id="exampleFormControlTextarea1"
               value={this.state.type}
               required
+              maxLength="80"
               onChange={event => this.setState({type: event.target.value})}
               rows="1"
             />
@@ -164,6 +165,7 @@ class VisitsUpdate extends Component {
               id="exampleFormControlTextarea1"
               value={this.state.date}
               required
+              maxLength="40"
               onChange={event => this.setState({date: event.target.value})}
               rows="1"
             />

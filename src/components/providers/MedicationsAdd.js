@@ -66,6 +66,8 @@ class MedicationsAdd extends Component {
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
+              maxLength="60"
+              required
               rows="1"
               onChange={event => this.setState({medication_name: event.target.value})}
             />
@@ -75,6 +77,8 @@ class MedicationsAdd extends Component {
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
+              maxLength="120"
+              required
               rows="1"
               onChange={event => this.setState({dosage: event.target.value})}
             />

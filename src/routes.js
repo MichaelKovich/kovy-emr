@@ -7,6 +7,7 @@ import Processing from './components/Processing';
 
 // PATIENT COMPONENTS
 import Patients from './components/patients/Patients';
+import Visits from './components/patients/Visits';
 
 // PROVIDER COMPONENTS
 import Providers from './components/providers/Providers';
@@ -20,7 +21,16 @@ export default (
     <Route component={Homepage} exact path="/" />
     <Route component={Processing} path="/processing" />
 
-    <Route component={Patients} path="/patients" />
+    <Route component={Patients} exact path="/patients" />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <Visits />
+        </div>
+      )}
+      path="/patients/visits"
+    />
 
     <Route component={Providers} exact path="/providers" />
     <Route

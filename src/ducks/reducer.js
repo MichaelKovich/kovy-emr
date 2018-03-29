@@ -10,6 +10,7 @@ const initialState = {
   providers: [], // An array of all provider-permissioned users in the database.
   medicationsMaster: [], // An array made up of all rows from Users and Medications joined.
   visitsMaster: [], // An array made up of all rows from Users, Visits, and Physicians joined.
+  visits: [],
 };
 
 // AUTHENTICATION ACTION TYPES
@@ -22,6 +23,7 @@ const RETRIEVE_PATIENTS = 'RETRIEVE_PATIENTS';
 const RETRIEVE_PROVIDERS = 'RETRIEVE_PROVIDERS';
 const RETRIEVE_MEDICATIONS_MASTER = 'RETRIEVE_MEDICATIONS_MASTER';
 const RETRIEVE_VISITS_MASTER = 'RETRIEVE_VISITS_MASTER';
+const RETRIEVE_VISITS = 'RETRIEVE_VISITS';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -68,6 +70,12 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_VISITS_MASTER}_FULFILLED`:
       return {...state, visitsMaster: action.payload, isLoading: false};
+
+    case `${RETRIEVE_VISITS}_PENDING`:
+      return {...state, visits: action.payload, isLoading: true};
+
+    case `${RETRIEVE_VISITS}_FULFILLED`:
+      return {...state, visits: action.payload, isLoading: false};
 
     default:
       return state;
@@ -121,6 +129,22 @@ export const retrieveVisitsMaster = () => ({
   type: RETRIEVE_VISITS_MASTER,
   payload: axios
     .get('/providers/data/visits-master')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+// export const retrieveVisits = username => ({
+//   type: RETRIEVE_VISITS,
+//   payload: axios
+//     .get(`/patients/data/visits/${username}`)
+//     .then(res => res.data)
+//     .catch(err => console.log(err)),
+// });
+
+export const retrieveVisits = () => ({
+  type: RETRIEVE_VISITS,
+  payload: axios
+    .get('/patients/data/visits/tunafish@swordfish.com')
     .then(res => res.data)
     .catch(err => console.log(err)),
 });

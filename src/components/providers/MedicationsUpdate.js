@@ -119,6 +119,8 @@ class MedicationsUpdate extends Component {
               className="form-control"
               id="exampleFormControlTextarea1"
               value={this.state.medication_name}
+              maxLength="60"
+              required
               onChange={event => this.setState({medication_name: event.target.value})}
               rows="1"
             />
@@ -129,6 +131,8 @@ class MedicationsUpdate extends Component {
               className="form-control"
               id="exampleFormControlTextarea1"
               value={this.state.dosage}
+              maxLength="120"
+              required
               onChange={event => this.setState({dosage: event.target.value})}
               rows="1"
             />

@@ -1,5 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
-
 #navigation {
   font-family: 'Raleway', sans-serif;
+}
+
+.visits-grid-wrapper {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+#card-text-bold {
+  font-weight: 600;
 }
