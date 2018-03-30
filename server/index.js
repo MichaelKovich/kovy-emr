@@ -24,6 +24,7 @@ const {getProviders} = require(`${__dirname}/controllers/data/providersControlle
 const {addMedication} = require(`${__dirname}/controllers/data/medicationsController`);
 const {getMedicationsMaster} = require(`${__dirname}/controllers/data/medicationsController`);
 const {updateMedication} = require(`${__dirname}/controllers/data/medicationsController`);
+const {getMedications} = require(`${__dirname}/controllers/data/medicationsController`);
 const {addVisit} = require(`${__dirname}/controllers/data/visitsController`);
 const {getVisitsMaster} = require(`${__dirname}/controllers/data/visitsController`);
 const {updateVisit} = require(`${__dirname}/controllers/data/visitsController`);
@@ -85,9 +86,11 @@ app.get('/authentication/session', sessionControl);
 // PATIENT FRONT-END ROUTES
 app.get('/patients', sessionChecker, dashboardRouter);
 app.get('/patients/visits', sessionChecker, dashboardRouter);
+app.get('/patients/medications', sessionChecker, dashboardRouter);
 
 // PATIENT DATA ROUTES
-app.get('/patients/data/visits/:id', sessionChecker, getVisits);
+app.get('/patients/data/visits', sessionChecker, getVisits);
+app.get('/patients/data/medications', sessionChecker, getMedications);
 
 // PROVIDER FRONT-END ROUTES
 app.get('/providers', sessionChecker, physicianChecker, dashboardRouter);

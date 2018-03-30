@@ -36,8 +36,15 @@ const getVisits = (req, res, next) => {
   const db = req.app.get('db');
 
   db
-    .pat_get_visits([req.params.id])
-    .then(response => res.status(200).json(response))
+    .pat_get_userid([req.session.user.emails[0].value])
+    .then((response) => {
+      db
+        .pat_get_visits([response[0].userid])
+        .then((response) => {
+          res.status(200).json(response);
+        })
+        .catch(err => console.log(err));
+    })
     .catch(err => console.log(err));
 };
 

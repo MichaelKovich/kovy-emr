@@ -105,7 +105,7 @@ class VisitsAdd extends Component {
               required
               maxLength="40"
               rows="1"
-              placeholder="mm/dd/yyyy"
+              placeholder="mm-dd-yyyy"
               onChange={event => this.setState({date: event.target.value})}
             />
           </div>

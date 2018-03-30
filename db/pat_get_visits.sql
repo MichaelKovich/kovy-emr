@@ -1,3 +1,3 @@
 SELECT * FROM visits
-JOIN users ON visits.patient = users.userid
-WHERE users.email = $1;
+JOIN users ON visits.provider = users.userid
+WHERE visits.patient = $1;

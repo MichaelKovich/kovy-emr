@@ -29,7 +29,7 @@ class Providers extends Component {
     return (
       <div>
         <Header />
-        {this.props.isLoading ? <Loading /> : <div>Hello, {this.props.username}!</div>}
+        {/* {this.props.isLoading ? <Loading /> : <div>Hello, {this.props.username}!</div>} */}
         {/* <Footer /> */}
       </div>
     );

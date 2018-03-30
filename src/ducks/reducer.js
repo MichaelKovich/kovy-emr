@@ -9,6 +9,7 @@ const initialState = {
   patients: [], // An array of all non-physician users in the database.
   providers: [], // An array of all provider-permissioned users in the database.
   medicationsMaster: [], // An array made up of all rows from Users and Medications joined.
+  medications: [],
   visitsMaster: [], // An array made up of all rows from Users, Visits, and Physicians joined.
   visits: [],
 };
@@ -22,6 +23,7 @@ const PHYSICIAN_AUTHENTICATION = 'PHYSICIAN_AUTHENTICATION';
 const RETRIEVE_PATIENTS = 'RETRIEVE_PATIENTS';
 const RETRIEVE_PROVIDERS = 'RETRIEVE_PROVIDERS';
 const RETRIEVE_MEDICATIONS_MASTER = 'RETRIEVE_MEDICATIONS_MASTER';
+const RETRIEVE_MEDICATIONS = 'RETRIEVE_MEDICATIONS';
 const RETRIEVE_VISITS_MASTER = 'RETRIEVE_VISITS_MASTER';
 const RETRIEVE_VISITS = 'RETRIEVE_VISITS';
 
@@ -64,6 +66,12 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_MEDICATIONS_MASTER}_FULFILLED`:
       return {...state, medicationsMaster: action.payload, isLoading: false};
+
+    case `${RETRIEVE_MEDICATIONS}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_MEDICATIONS}_FULFILLED`:
+      return {...state, medications: action.payload, isLoading: false};
 
     case `${RETRIEVE_VISITS_MASTER}_PENDING`:
       return {...state, isLoading: true};
@@ -125,6 +133,14 @@ export const retrieveMedicationsMaster = () => ({
     .catch(err => console.log(err)),
 });
 
+export const retrieveMedications = () => ({
+  type: RETRIEVE_MEDICATIONS,
+  payload: axios
+    .get('/patients/data/medications')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
 export const retrieveVisitsMaster = () => ({
   type: RETRIEVE_VISITS_MASTER,
   payload: axios
@@ -133,18 +149,10 @@ export const retrieveVisitsMaster = () => ({
     .catch(err => console.log(err)),
 });
 
-// export const retrieveVisits = username => ({
-//   type: RETRIEVE_VISITS,
-//   payload: axios
-//     .get(`/patients/data/visits/${username}`)
-//     .then(res => res.data)
-//     .catch(err => console.log(err)),
-// });
-
 export const retrieveVisits = () => ({
   type: RETRIEVE_VISITS,
   payload: axios
-    .get('/patients/data/visits/tunafish@swordfish.com')
+    .get('/patients/data/visits')
     .then(res => res.data)
     .catch(err => console.log(err)),
 });

@@ -56,7 +56,7 @@ class Header extends Component {
                 Health
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="/patients/medications">
                   Medications
                 </a>
                 <a className="dropdown-item" href="#">

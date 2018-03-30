@@ -2,13 +2,20 @@
   font-family: 'Raleway', sans-serif;
 }
 
-.visits-grid-wrapper {
+.visits-grid-wrapper,
+.medications-grid-wrapper {
+  font-family: 'Raleway', sans-serif;
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+}
+
+.visit-card,
+.medication-card {
+  margin-top: 5px;
 }
 
 #card-text-bold {
