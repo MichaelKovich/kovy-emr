@@ -18,7 +18,7 @@ import {connect} from 'react-redux';
 import Header from './subcomponents/Header';
 import Footer from './subcomponents/Footer';
 import Loading from '../subcomponents/Loading';
-import '../../App.css';
+import './styles/providers.css';
 
 class Providers extends Component {
   constructor(props) {

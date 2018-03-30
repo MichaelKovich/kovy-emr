@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Header from './subcomponents/Header';
 import Footer from './subcomponents/Footer';
 import Loading from '../subcomponents/Loading';
-import '../../App.css';
+import './styles/patients.css';
 
 class Patients extends Component {
   constructor(props) {

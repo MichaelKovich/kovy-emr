@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/patients.css';
 
 function visitCard(props) {
   return (

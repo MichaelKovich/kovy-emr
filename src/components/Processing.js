@@ -4,7 +4,6 @@ import {authenticationInitial, physicianAuthentication} from '../ducks/reducer';
 import {connect} from 'react-redux';
 
 import Loading from './subcomponents/Loading';
-import '../App.css';
 
 class Processing extends Component {
   constructor(props) {

@@ -6,7 +6,6 @@ import {retrieveMedications} from '../../ducks/reducer';
 import MedicationCard from './subcomponents/MedicationCard';
 import Loading from '../subcomponents/Loading';
 import './styles/patients.css';
-import '../../App.css';
 
 class Medications extends Component {
   constructor() {

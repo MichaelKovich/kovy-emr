@@ -6,7 +6,6 @@ import {retrieveVisits} from '../../ducks/reducer';
 import VisitCard from './subcomponents/VisitCard';
 import Loading from '../subcomponents/Loading';
 import './styles/patients.css';
-import '../../App.css';
 
 class Visits extends Component {
   constructor() {

@@ -11,7 +11,11 @@ const sessionControl = (req, res, next) => {
       .check_user([req.session.user.emails[0].value])
       .then((response) => {
         if (response.length > 0) {
-          res.status(200).json({user: response[0].email, physician: response[0].physician});
+          res.status(200).json({
+            user: response[0].email,
+            userid: response[0].userid,
+            physician: response[0].physician,
+          });
         } else {
           res.redirect('/');
         }
