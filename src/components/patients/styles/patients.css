@@ -1,10 +1,11 @@
-#navigation {
+#navigation,
+.visits-grid-wrapper,
+.medications-grid-wrapper {
   font-family: 'Raleway', sans-serif;
 }
 
 .visits-grid-wrapper,
 .medications-grid-wrapper {
-  font-family: 'Raleway', sans-serif;
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;

@@ -4,6 +4,7 @@ import axios from 'axios';
 import {retrieveVisits} from '../../ducks/reducer';
 
 import VisitCard from './subcomponents/VisitCard';
+import Loading from '../subcomponents/Loading';
 import './styles/patients.css';
 import '../../App.css';
 
@@ -32,9 +33,11 @@ class Visits extends Component {
 
     return (
       <div>
-        <div className="visits-grid-wrapper">
-          {this.props.visits && this.props.visits.length > 0 ? mappedVisits : 'Please wait.'}
-        </div>
+        {this.props.visits && this.props.visits.length > 0 ? (
+          <div className="visits-grid-wrapper">{mappedVisits}</div>
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }

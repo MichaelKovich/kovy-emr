@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userAuthenticate} from '../../../ducks/reducer';
+import {Link} from 'react-router-dom';
 
 import '../styles/providers.css';
 
@@ -16,9 +17,9 @@ class Header extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-        <a className="navbar-brand" href="/providers">
-          Iyashi EMR (Prov)
-        </a>
+        <Link className="navbar-brand" to="/providers">
+          Iyashi EMR | Providers
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -34,14 +35,14 @@ class Header extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/providers">
                 Dashboard
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Messages
-              </a>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -56,32 +57,32 @@ class Header extends Component {
                 Health
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/providers/medications/add">
+                <Link className="dropdown-item" to="/providers/medications/add">
                   Add Medications
-                </a>
-                <a className="dropdown-item" href="/providers/medications/update">
+                </Link>
+                <Link className="dropdown-item" to="/providers/medications/update">
                   Update Medications
-                </a>
-                <a className="dropdown-item" href="#">
-                  Genomics
-                </a>
-                <a className="dropdown-item" href="/providers/visits/add">
+                </Link>
+                <Link className="dropdown-item" to="/providers/visits/add">
                   Add Visits
-                </a>
-                <a className="dropdown-item" href="/providers/visits/update">
+                </Link>
+                <Link className="dropdown-item" to="/providers/visits/update">
                   Update Visits
-                </a>
+                </Link>
+                <Link className="dropdown-item" to="#">
+                  Genomics
+                </Link>
               </div>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Blog
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

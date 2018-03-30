@@ -3,8 +3,9 @@ import '../../App.css';
 
 function loading() {
   return (
-    <div className="donut-box">
-      <div className="donut" />
+    <div className="spinner">
+      <div className="cube1" />
+      <div className="cube2" />
     </div>
   );
 }

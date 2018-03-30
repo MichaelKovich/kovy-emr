@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userAuthenticate} from '../../../ducks/reducer';
+import {Link} from 'react-router-dom';
 
 import '../styles/patients.css';
 
@@ -16,9 +17,9 @@ class Header extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-        <a className="navbar-brand" href="/patients">
+        <Link className="navbar-brand" to="/patients">
           Iyashi EMR
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -34,14 +35,14 @@ class Header extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/patients">
                 Dashboard
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Messages
-              </a>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -56,26 +57,26 @@ class Header extends Component {
                 Health
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/patients/medications">
+                <Link className="dropdown-item" to="/patients/medications">
                   Medications
-                </a>
-                <a className="dropdown-item" href="#">
+                </Link>
+                <Link className="dropdown-item" to="#">
                   Genomics
-                </a>
-                <a className="dropdown-item" href="/patients/visits">
+                </Link>
+                <Link className="dropdown-item" to="/patients/visits">
                   Visits
-                </a>
+                </Link>
               </div>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Blog
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
