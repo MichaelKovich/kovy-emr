@@ -1,0 +1,1 @@
+SELECT phone, notifications FROM users WHERE userid = $1

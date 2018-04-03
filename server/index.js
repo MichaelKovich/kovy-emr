@@ -4,7 +4,7 @@ const {json} = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
 require('dotenv').config();
-const path = require('path');
+const path = require('path'); // can probably remove this now
 
 // AUTHENTICATION DEPENDENCIES
 const session = require('express-session');
@@ -31,6 +31,7 @@ const {updateVisit} = require(`${__dirname}/controllers/data/visitsController`);
 const {getVisits} = require(`${__dirname}/controllers/data/visitsController`);
 const {getMyPatients} = require(`${__dirname}/controllers/data/patientsController`);
 const {getMyColleagues} = require(`${__dirname}/controllers/data/providersController`);
+const {sendMessage} = require(`${__dirname}/controllers/data/messagesController`);
 
 // MIDDLEWARE
 const {sessionChecker} = require(`${__dirname}/middleware/sessionChecker`);
@@ -118,6 +119,7 @@ app.post('/providers/data/add-visit', sessionChecker, physicianChecker, addVisit
 app.put('/providers/data/update-visit', sessionChecker, physicianChecker, updateVisit);
 app.get('/providers/data/my-patients', sessionChecker, physicianChecker, getMyPatients);
 app.get('/providers/data/my-colleagues', sessionChecker, physicianChecker, getMyColleagues);
+app.post('/providers/data/send-message', sessionChecker, physicianChecker, sendMessage);
 
 // LISTENING
 const port = process.env.PORT || 3000;
