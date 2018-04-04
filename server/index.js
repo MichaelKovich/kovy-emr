@@ -33,6 +33,10 @@ const {getMyPatients} = require(`${__dirname}/controllers/data/patientsControlle
 const {getMyColleagues} = require(`${__dirname}/controllers/data/providersController`);
 const {sendMessage} = require(`${__dirname}/controllers/data/messagesController`);
 const {getMessages} = require(`${__dirname}/controllers/data/messagesController`);
+const {getBillingItems} = require(`${__dirname}/controllers/billing/billingController`);
+
+// BILLING CONTROLLER
+const {stripeCharge} = require(`${__dirname}/controllers/billing/stripeController`);
 
 // MIDDLEWARE
 const {sessionChecker} = require(`${__dirname}/middleware/sessionChecker`);
@@ -91,10 +95,12 @@ app.get('/authentication/session', sessionControl);
 app.get('/patients', sessionChecker, dashboardRouter);
 app.get('/patients/visits', sessionChecker, dashboardRouter);
 app.get('/patients/medications', sessionChecker, dashboardRouter);
+app.get('/patients/billing', sessionChecker, dashboardRouter);
 
 // PATIENT DATA ROUTES
 app.get('/patients/data/visits', sessionChecker, getVisits);
 app.get('/patients/data/medications', sessionChecker, getMedications);
+app.get('/patients/data/get-billing-items', sessionChecker, getBillingItems);
 
 // PROVIDER FRONT-END ROUTES
 app.get('/providers', sessionChecker, physicianChecker, dashboardRouter);
@@ -123,6 +129,9 @@ app.get('/providers/data/my-patients', sessionChecker, physicianChecker, getMyPa
 app.get('/providers/data/my-colleagues', sessionChecker, physicianChecker, getMyColleagues);
 app.post('/providers/data/send-message', sessionChecker, physicianChecker, sendMessage);
 app.get('/providers/data/get-messages', sessionChecker, physicianChecker, getMessages);
+
+// PAYMENT DATA ROUTE
+app.post('/patients/billing/charge', sessionChecker, stripeCharge);
 
 // LISTENING
 const port = process.env.PORT || 3000;

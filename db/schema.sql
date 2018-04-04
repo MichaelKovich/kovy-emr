@@ -59,6 +59,17 @@ CREATE TABLE visits
     REFERENCES users
 );
 
+create table billing
+(
+  billid      serial not null
+    constraint billing_pkey
+    primary key,
+  patientid   integer,
+  paid        boolean default false,
+  amount      integer,
+  description varchar(60)
+);
+
 -- AUTO0 Return:
 -- {
 --   "sub": "linkedin|Tp3uxBozeo",    --   identity provider id}|{unique id in the provider}

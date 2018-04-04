@@ -16,6 +16,7 @@ const initialState = {
   myPatients: [], // Retrieves all patients that have had, or have upcoming, visits with the current physician user.
   myColleagues: [], // Retrieves all physicians, minus the current physician user.
   messages: [], // Contains all messages that have been sent to the current user.
+  billingItems: [],
 };
 
 // AUTHENTICATION ACTION TYPES
@@ -33,6 +34,7 @@ const RETRIEVE_VISITS = 'RETRIEVE_VISITS';
 const RETRIEVE_MY_PATIENTS = 'RETRIEVE_MY_PATIENTS';
 const RETRIEVE_MY_COLLEAGUES = 'RETRIEVE_MY_COLLEAGUES';
 const RETRIEVE_MESSAGES = 'RETRIEVE_MESSAGES';
+const RETRIEVE_BILLING_ITEMS = 'RETRIEVE_BILLING_ITEMS';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -110,6 +112,12 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_MESSAGES}_FULFILLED`:
       return {...state, messages: action.payload, isLoading: false};
+
+    case `${RETRIEVE_BILLING_ITEMS}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_BILLING_ITEMS}_FULFILLED`:
+      return {...state, billingItems: action.payload, isLoading: false};
 
     default:
       return state;
@@ -205,4 +213,9 @@ export const retrieveMessages = () => ({
     .get('/providers/data/get-messages')
     .then(res => res.data)
     .catch(err => console.log(err)),
+});
+
+export const retrieveBillingItems = () => ({
+  type: RETRIEVE_BILLING_ITEMS,
+  payload: axios.get('/patients/data/get-billing-items').then(res => res.data).catch(err => console.log(err)),
 });
