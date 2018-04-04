@@ -32,6 +32,7 @@ const {getVisits} = require(`${__dirname}/controllers/data/visitsController`);
 const {getMyPatients} = require(`${__dirname}/controllers/data/patientsController`);
 const {getMyColleagues} = require(`${__dirname}/controllers/data/providersController`);
 const {sendMessage} = require(`${__dirname}/controllers/data/messagesController`);
+const {getMessages} = require(`${__dirname}/controllers/data/messagesController`);
 
 // MIDDLEWARE
 const {sessionChecker} = require(`${__dirname}/middleware/sessionChecker`);
@@ -101,6 +102,7 @@ app.get('/providers/medications/add', sessionChecker, physicianChecker, dashboar
 app.get('/providers/medications/update', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/visits/add', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/visits/update', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/messages', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/messages/send', sessionChecker, physicianChecker, dashboardRouter);
 
 // PROVIDER DATA ROUTES
@@ -120,6 +122,7 @@ app.put('/providers/data/update-visit', sessionChecker, physicianChecker, update
 app.get('/providers/data/my-patients', sessionChecker, physicianChecker, getMyPatients);
 app.get('/providers/data/my-colleagues', sessionChecker, physicianChecker, getMyColleagues);
 app.post('/providers/data/send-message', sessionChecker, physicianChecker, sendMessage);
+app.get('/providers/data/get-messages', sessionChecker, physicianChecker, getMessages);
 
 // LISTENING
 const port = process.env.PORT || 3000;

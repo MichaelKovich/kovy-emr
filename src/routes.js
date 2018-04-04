@@ -16,6 +16,7 @@ import MedicationsAdd from './components/providers/MedicationsAdd';
 import MedicationsUpdate from './components/providers/MedicationsUpdate';
 import VisitsAdd from './components/providers/VisitsAdd';
 import VisitsUpdate from './components/providers/VisitsUpdate';
+import ProviderInbox from './components/providers/Inbox';
 import SendMessage from './components/providers/SendMessage';
 
 export default (
@@ -79,6 +80,16 @@ export default (
         </div>
       )}
       path="/providers/visits/update"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <ProviderInbox />
+        </div>
+      )}
+      exact
+      path="/providers/messages"
     />
     <Route
       component={() => (

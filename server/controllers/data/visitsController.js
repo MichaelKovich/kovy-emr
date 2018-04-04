@@ -36,7 +36,7 @@ const getVisits = (req, res, next) => {
   const db = req.app.get('db');
 
   db
-    .pat_get_userid([req.session.user.emails[0].value])
+    .get_userid([req.session.user.emails[0].value])
     .then((response) => {
       db
         .pat_get_visits([response[0].userid])

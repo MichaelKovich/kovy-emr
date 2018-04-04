@@ -15,6 +15,7 @@ const initialState = {
   visits: [], // Pulls the patient's visit history.
   myPatients: [], // Retrieves all patients that have had, or have upcoming, visits with the current physician user.
   myColleagues: [], // Retrieves all physicians, minus the current physician user.
+  messages: [], // Contains all messages that have been sent to the current user.
 };
 
 // AUTHENTICATION ACTION TYPES
@@ -31,6 +32,7 @@ const RETRIEVE_VISITS_MASTER = 'RETRIEVE_VISITS_MASTER';
 const RETRIEVE_VISITS = 'RETRIEVE_VISITS';
 const RETRIEVE_MY_PATIENTS = 'RETRIEVE_MY_PATIENTS';
 const RETRIEVE_MY_COLLEAGUES = 'RETRIEVE_MY_COLLEAGUES';
+const RETRIEVE_MESSAGES = 'RETRIEVE_MESSAGES';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -102,6 +104,12 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_MY_COLLEAGUES}_FULFILLED`:
       return {...state, myColleagues: action.payload, isLoading: false};
+
+    case `${RETRIEVE_MESSAGES}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_MESSAGES}_FULFILLED`:
+      return {...state, messages: action.payload, isLoading: false};
 
     default:
       return state;
@@ -187,6 +195,14 @@ export const retrieveMyColleagues = () => ({
   type: RETRIEVE_MY_COLLEAGUES,
   payload: axios
     .get('/providers/data/my-colleagues')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveMessages = () => ({
+  type: RETRIEVE_MESSAGES,
+  payload: axios
+    .get('/providers/data/get-messages')
     .then(res => res.data)
     .catch(err => console.log(err)),
 });

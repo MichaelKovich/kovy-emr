@@ -52,7 +52,7 @@ class Header extends Component {
                 Messages
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="#">
+                <Link className="dropdown-item" to="/providers/messages">
                   Inbox
                 </Link>
                 <Link className="dropdown-item" to="/providers/messages/send">

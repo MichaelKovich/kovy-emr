@@ -13,7 +13,7 @@ const getMyColleagues = (req, res, next) => {
   const db = req.app.get('db');
 
   db
-    .pat_get_userid([req.session.user.emails[0].value])
+    .get_userid([req.session.user.emails[0].value])
     .then((response) => {
       db
         .prov_get_my_colleagues([response[0].userid])

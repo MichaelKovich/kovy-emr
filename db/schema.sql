@@ -26,20 +26,22 @@ CREATE TABLE messages
 
 CREATE TABLE users
 (
-  userid      SERIAL                NOT NULL
+  userid        SERIAL                NOT NULL
     CONSTRAINT users_pkey
     PRIMARY KEY,
-  physician   BOOLEAN DEFAULT FALSE NOT NULL,
-  email       VARCHAR(40)
+  physician     BOOLEAN DEFAULT FALSE NOT NULL,
+  email         VARCHAR(40)
     CONSTRAINT users_email_key
     UNIQUE,
-  given_name  VARCHAR(40),
-  family_name VARCHAR(40),
-  picture     VARCHAR(300),
-  address     VARCHAR(260),
-  city        VARCHAR(80),
-  state       VARCHAR(2),
-  zip         INTEGER
+  given_name    VARCHAR(40),
+  family_name   VARCHAR(40),
+  picture       VARCHAR(300),
+  address       VARCHAR(260),
+  city          VARCHAR(80),
+  state         VARCHAR(2),
+  zip           INTEGER,
+  phone         VARCHAR(10),
+  notifications BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE visits

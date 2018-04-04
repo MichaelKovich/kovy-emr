@@ -73,6 +73,7 @@ class SendMedications extends Component {
               onChange={event => this.setState({recipientid: event.target.value})}
             >
               <option selected>Please select a recipient:</option>
+              <hr />
               <option disabled>Patients:</option>
               {mappedPatients}
               <hr />
@@ -85,7 +86,7 @@ class SendMedications extends Component {
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
-              maxLength="60"
+              maxLength="80"
               required
               onChange={event => this.setState({subject: event.target.value})}
               rows="1"
@@ -96,7 +97,6 @@ class SendMedications extends Component {
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
-              maxLength="60"
               required
               onChange={event => this.setState({content: event.target.value})}
               rows="3"
