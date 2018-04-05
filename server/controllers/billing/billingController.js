@@ -6,7 +6,7 @@ const getBillingItems = (req, res, next) => {
     .then((response) => {
       db
         .pat_get_billing_items([response[0].userid])
-        .then((response) => res.status(200).json(response))
+        .then(response => res.status(200).json(response))
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
@@ -14,4 +14,4 @@ const getBillingItems = (req, res, next) => {
 
 module.exports = {
   getBillingItems,
-}
+};

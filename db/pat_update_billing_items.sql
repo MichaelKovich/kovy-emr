@@ -1,0 +1,1 @@
+UPDATE billing SET paid = true WHERE billing.billid = $1;
