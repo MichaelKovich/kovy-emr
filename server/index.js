@@ -133,6 +133,11 @@ app.get('/providers/data/get-messages', sessionChecker, physicianChecker, getMes
 // PAYMENT DATA ROUTE
 app.post('/patients/billing/charge', sessionChecker, stripeCharge);
 
+// 404 Route
+// app.get('*', function(req, res){
+//   console.log('404');
+// });
+
 // LISTENING
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Dr. Crane is listening on ${port}!`));
