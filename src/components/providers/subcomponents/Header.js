@@ -90,6 +90,27 @@ class Header extends Component {
                 </Link>
               </div>
             </li>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Billing
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/providers/billing/add">
+                  Add Bills
+                </Link>
+                <Link className="dropdown-item" to="#">
+                  Update Bills
+                </Link>
+              </div>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="#">
                 Blog

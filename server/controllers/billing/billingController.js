@@ -12,6 +12,16 @@ const getBillingItems = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+const addBill = (req, res, next) => {
+  const db = req.app.get('db');
+
+  db
+  .prov_add_bill([req.body.patientid, req.body.amount, req.body.description])
+  .then(response => res.status(200))
+  .catch(err => console.log(err));
+};
+
 module.exports = {
   getBillingItems,
+  addBill,
 };

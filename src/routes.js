@@ -19,6 +19,7 @@ import VisitsAdd from './components/providers/VisitsAdd';
 import VisitsUpdate from './components/providers/VisitsUpdate';
 import ProviderInbox from './components/providers/Inbox';
 import SendMessage from './components/providers/SendMessage';
+import BillingAdd from './components/providers/BillingAdd';
 
 export default (
   <Switch>
@@ -109,6 +110,15 @@ export default (
         </div>
       )}
       path="/providers/messages/send"
+    />
+        <Route
+      component={() => (
+        <div>
+          <Providers />
+          <BillingAdd />
+        </div>
+      )}
+      path="/providers/billing/add"
     />
   </Switch>
 );

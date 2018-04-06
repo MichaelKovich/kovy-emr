@@ -34,6 +34,7 @@ const {getMyColleagues} = require(`${__dirname}/controllers/data/providersContro
 const {sendMessage} = require(`${__dirname}/controllers/data/messagesController`);
 const {getMessages} = require(`${__dirname}/controllers/data/messagesController`);
 const {getBillingItems} = require(`${__dirname}/controllers/billing/billingController`);
+const {addBill} = require(`${__dirname}/controllers/billing/billingController`);
 
 // BILLING CONTROLLER
 const {stripeCharge} = require(`${__dirname}/controllers/billing/stripeController`);
@@ -110,6 +111,7 @@ app.get('/providers/visits/add', sessionChecker, physicianChecker, dashboardRout
 app.get('/providers/visits/update', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/messages', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/messages/send', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/billing/add', sessionChecker, physicianChecker, dashboardRouter);
 
 // PROVIDER DATA ROUTES
 app.get('/providers/data/patients', sessionChecker, physicianChecker, getPatients);
@@ -129,6 +131,7 @@ app.get('/providers/data/my-patients', sessionChecker, physicianChecker, getMyPa
 app.get('/providers/data/my-colleagues', sessionChecker, physicianChecker, getMyColleagues);
 app.post('/providers/data/send-message', sessionChecker, physicianChecker, sendMessage);
 app.get('/providers/data/get-messages', sessionChecker, physicianChecker, getMessages);
+app.post('/providers/data/add-bill', sessionChecker, physicianChecker, addBill);
 
 // PAYMENT DATA ROUTE
 app.post('/patients/billing/charge', sessionChecker, stripeCharge);
