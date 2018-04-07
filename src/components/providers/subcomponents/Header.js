@@ -106,7 +106,7 @@ class Header extends Component {
                 <Link className="dropdown-item" to="/providers/billing/add">
                   Add Bills
                 </Link>
-                <Link className="dropdown-item" to="#">
+                <Link className="dropdown-item" to="/providers/billing/update">
                   Update Bills
                 </Link>
               </div>

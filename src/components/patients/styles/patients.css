@@ -22,3 +22,11 @@
 #card-text-bold {
   font-weight: 600;
 }
+
+.medications-c2 {
+  width: 50%;
+  height: 80%;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 3%;
+}

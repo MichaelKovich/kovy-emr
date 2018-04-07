@@ -4,12 +4,14 @@ import {Switch, Route} from 'react-router-dom';
 // UNIVERSAL COMPONENTS
 import Homepage from './components/Homepage';
 import Processing from './components/Processing';
+import Inbox from './components/Inbox';
 
 // PATIENT COMPONENTS
 import Patients from './components/patients/Patients';
 import Visits from './components/patients/Visits';
 import Medications from './components/patients/Medications';
 import Billing from './components/patients/Billing';
+import PatientSend from './components/patients/SendMessage';
 
 // PROVIDER COMPONENTS
 import Providers from './components/providers/Providers';
@@ -17,9 +19,9 @@ import MedicationsAdd from './components/providers/MedicationsAdd';
 import MedicationsUpdate from './components/providers/MedicationsUpdate';
 import VisitsAdd from './components/providers/VisitsAdd';
 import VisitsUpdate from './components/providers/VisitsUpdate';
-import ProviderInbox from './components/providers/Inbox';
 import SendMessage from './components/providers/SendMessage';
 import BillingAdd from './components/providers/BillingAdd';
+import BillingUpdate from './components/providers/BillingUpdate';
 
 export default (
   <Switch>
@@ -53,6 +55,25 @@ export default (
         </div>
       )}
       path="/patients/billing"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <Inbox />
+        </div>
+      )}
+      exact
+      path="/patients/messages"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <PatientSend />
+        </div>
+      )}
+      path="/patients/messages/send"
     />
 
     <Route component={Providers} exact path="/providers" />
@@ -96,7 +117,7 @@ export default (
       component={() => (
         <div>
           <Providers />
-          <ProviderInbox />
+          <Inbox />
         </div>
       )}
       exact
@@ -111,7 +132,7 @@ export default (
       )}
       path="/providers/messages/send"
     />
-        <Route
+    <Route
       component={() => (
         <div>
           <Providers />
@@ -119,6 +140,15 @@ export default (
         </div>
       )}
       path="/providers/billing/add"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <BillingUpdate />
+        </div>
+      )}
+      path="/providers/billing/update"
     />
   </Switch>
 );

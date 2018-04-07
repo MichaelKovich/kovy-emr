@@ -39,10 +39,26 @@ class Header extends Component {
                 Dashboard
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#">
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 Messages
-              </Link>
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/patients/messages">
+                  Inbox
+                </Link>
+                <Link className="dropdown-item" to="/patients/messages/send">
+                  Send Messages
+                </Link>
+              </div>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -68,10 +84,26 @@ class Header extends Component {
                 </Link>
               </div>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/patients/billing">
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 Billing
-              </Link>
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/patients/billing">
+                  Pay a Bill
+                </Link>
+                <Link className="dropdown-item" to="#">
+                  Billing History
+                </Link>
+              </div>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="#">

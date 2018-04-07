@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {retrieveMessages} from '../../ducks/reducer';
+import {retrieveMessages} from '../ducks/reducer';
 
 import Messages from './subcomponents/Messages';
-import Loading from '../subcomponents/Loading';
-import './styles/providers.css';
+import Loading from './subcomponents/Loading';
+import './providers/styles/providers.css';
 
 class Inbox extends Component {
   constructor() {

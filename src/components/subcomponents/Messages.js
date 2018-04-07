@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/providers.css';
+import '../providers/styles/providers.css';
 
 const messages = props => (
   <div className="card message">

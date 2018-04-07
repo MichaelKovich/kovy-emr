@@ -16,7 +16,9 @@ const initialState = {
   myPatients: [], // Retrieves all patients that have had, or have upcoming, visits with the current physician user.
   myColleagues: [], // Retrieves all physicians, minus the current physician user.
   messages: [], // Contains all messages that have been sent to the current user.
-  billingItems: [],
+  billingItems: [], // Contains all of the current user's billing items.
+  billingItemsMaster: [], // Contains all billing items for all users.
+  myProviders: [], // Retrieves all of the providers associated with a patient (based on visits)
 };
 
 // AUTHENTICATION ACTION TYPES
@@ -35,6 +37,8 @@ const RETRIEVE_MY_PATIENTS = 'RETRIEVE_MY_PATIENTS';
 const RETRIEVE_MY_COLLEAGUES = 'RETRIEVE_MY_COLLEAGUES';
 const RETRIEVE_MESSAGES = 'RETRIEVE_MESSAGES';
 const RETRIEVE_BILLING_ITEMS = 'RETRIEVE_BILLING_ITEMS';
+const RETRIEVE_BILLING_ITEMS_MASTER = 'RETRIEVE_BILLING_ITEMS_MASTER';
+const RETRIEVE_MY_PROVIDERS = 'RETRIEVE_MY_PROVIDERS';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -118,6 +122,18 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_BILLING_ITEMS}_FULFILLED`:
       return {...state, billingItems: action.payload, isLoading: false};
+
+    case `${RETRIEVE_BILLING_ITEMS_MASTER}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_BILLING_ITEMS_MASTER}_FULFILLED`:
+      return {...state, billingItemsMaster: action.payload, isLoading: false};
+
+    case `${RETRIEVE_MY_PROVIDERS}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_MY_PROVIDERS}_FULFILLED`:
+      return {...state, myProviders: action.payload, isLoading: false};
 
     default:
       return state;
@@ -210,12 +226,31 @@ export const retrieveMyColleagues = () => ({
 export const retrieveMessages = () => ({
   type: RETRIEVE_MESSAGES,
   payload: axios
-    .get('/providers/data/get-messages')
+    .get('/data/get-messages')
     .then(res => res.data)
     .catch(err => console.log(err)),
 });
 
 export const retrieveBillingItems = () => ({
   type: RETRIEVE_BILLING_ITEMS,
-  payload: axios.get('/patients/data/get-billing-items').then(res => res.data).catch(err => console.log(err)),
+  payload: axios
+    .get('/patients/data/get-billing-items')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveBillingItemsMaster = () => ({
+  type: RETRIEVE_BILLING_ITEMS_MASTER,
+  payload: axios
+    .get('/providers/data/billing-items-master')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveMyProviders = () => ({
+  type: RETRIEVE_MY_PROVIDERS,
+  payload: axios
+    .get('/patients/data/my-providers')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
 });

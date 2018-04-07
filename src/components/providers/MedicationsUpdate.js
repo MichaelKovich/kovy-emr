@@ -46,6 +46,15 @@ class MedicationsUpdate extends Component {
   }
 
   initialMedicationState(id) {
+    if (id === 'holder') {
+      return this.setState({
+        medicationid: 0,
+        medication_name: '',
+        dosage: '',
+        prescribed: false,
+      });
+    }
+
     const selectedMedication = this.props.medicationsMaster.filter(medication => +medication.medicationid === +id);
 
     const {
@@ -109,7 +118,7 @@ class MedicationsUpdate extends Component {
               id="exampleFormControlSelect1"
               onChange={event => this.initialMedicationState(event.target.value)}
             >
-              <option>Please select a medication.</option>
+              <option value="holder">Please select a medication.</option>
               {this.state.mappedMedications}
             </select>
           </div>

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {retrieveMyPatients, retrieveMyColleagues} from '../../ducks/reducer';
+import {retrieveMyProviders} from '../../ducks/reducer';
 import axios from 'axios';
 
-import Loading from '../subcomponents/Loading';
-import './styles/providers.css';
+import './styles/patients.css';
 
 class SendMessage extends Component {
   constructor() {
@@ -20,8 +19,7 @@ class SendMessage extends Component {
   }
 
   componentDidMount() {
-    this.props.retrieveMyPatients();
-    this.props.retrieveMyColleagues();
+    this.props.retrieveMyProviders();
   }
 
   sendMessage() {
@@ -40,20 +38,10 @@ class SendMessage extends Component {
   }
 
   render() {
-    let mappedPatients = [];
-
-    if (this.props.myPatients && this.props.myPatients.length > 0) {
-      mappedPatients = this.props.myPatients.map(patient => (
-        <option value={patient.userid}>
-          {patient.userid} | {patient.given_name} {patient.family_name}
-        </option>
-      ));
-    }
-
     let mappedProviders = [];
 
-    if (this.props.myColleagues && this.props.myColleagues.length > 0) {
-      mappedProviders = this.props.myColleagues.map(provider => (
+    if (this.props.myProviders && this.props.myProviders.length > 0) {
+      mappedProviders = this.props.myProviders.map(provider => (
         <option value={provider.userid}>
           {provider.userid} | {provider.given_name} {provider.family_name}
         </option>
@@ -72,15 +60,8 @@ class SendMessage extends Component {
               id="exampleFormControlSelect1"
               onChange={event => this.setState({recipientid: event.target.value})}
             >
-              <option selected>Please select a recipient:</option>
-              <hr />
-              <option disabled>Patients:</option>
-              {this.props.myPatients && this.props.myPatients.length > 0 ? mappedPatients : null}
-              <hr />
-              <option disabled>Providers:</option>
-              {this.props.myColleagues && this.props.myColleagues.length > 0
-                ? mappedProviders
-                : null}
+              <option selected>Please select a recipient.</option>
+              {this.props.myProviders && this.props.myProviders.length > 0 ? mappedProviders : null}
             </select>
           </div>
           <div className="form-group">
@@ -113,4 +94,4 @@ class SendMessage extends Component {
   }
 }
 
-export default connect(state => state, {retrieveMyPatients, retrieveMyColleagues})(SendMessage);
+export default connect(state => state, {retrieveMyProviders})(SendMessage);
