@@ -38,6 +38,8 @@ const {addBill} = require(`${__dirname}/controllers/billing/billingController`);
 const {updateBill} = require(`${__dirname}/controllers/billing/billingController`);
 const {getBillingItemsMaster} = require(`${__dirname}/controllers/billing/billingController`);
 const {getMyProviders} = require(`${__dirname}/controllers/data/providersController`);
+const {getProfile} = require(`${__dirname}/controllers/data/profileController`);
+const {updateProfile} = require(`${__dirname}/controllers/data/profileController`);
 
 // BILLING CONTROLLER
 const {stripeCharge} = require(`${__dirname}/controllers/billing/stripeController`);
@@ -102,6 +104,7 @@ app.get('/patients/medications', sessionChecker, dashboardRouter);
 app.get('/patients/billing', sessionChecker, dashboardRouter);
 app.get('/patients/messages', sessionChecker, dashboardRouter);
 app.get('/patients/messages/send', sessionChecker, dashboardRouter);
+app.get('/patients/profile', sessionChecker, physicianChecker, dashboardRouter);
 
 // PATIENT DATA ROUTES
 app.get('/patients/data/visits', sessionChecker, getVisits);
@@ -119,6 +122,7 @@ app.get('/providers/messages', sessionChecker, physicianChecker, dashboardRouter
 app.get('/providers/messages/send', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/billing/add', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/billing/update', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/profile', sessionChecker, physicianChecker, dashboardRouter);
 
 // PROVIDER DATA ROUTES
 app.get('/providers/data/patients', sessionChecker, physicianChecker, getPatients);
@@ -148,6 +152,8 @@ app.get(
 // UNIVERSAL DATA ROUTES
 app.get('/data/get-messages', sessionChecker, getMessages);
 app.post('/data/send-message', sessionChecker, sendMessage);
+app.get('/data/get-profile', sessionChecker, getProfile);
+app.put('/data/update-profile', sessionChecker, updateProfile);
 
 // PAYMENT DATA ROUTE
 app.post('/patients/billing/charge', sessionChecker, stripeCharge);

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import axios from 'axios';
 import {retrieveMedications} from '../../ducks/reducer';
 
 import MedicationCard from './subcomponents/MedicationCard';
@@ -8,10 +7,6 @@ import Loading from '../subcomponents/Loading';
 import './styles/patients.css';
 
 class Medications extends Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     this.props.retrieveMedications();
   }

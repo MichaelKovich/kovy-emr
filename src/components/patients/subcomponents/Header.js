@@ -6,10 +6,6 @@ import {Link} from 'react-router-dom';
 import '../styles/patients.css';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount(req, res, next) {
     this.props.userAuthenticate();
   }
@@ -104,6 +100,11 @@ class Header extends Component {
                   Billing History
                 </Link>
               </div>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/patients/profile">
+                Profile
+              </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="#">

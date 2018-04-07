@@ -6,10 +6,6 @@ import {connect} from 'react-redux';
 import Loading from './subcomponents/Loading';
 
 class Processing extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount(req, res) {
     axios
       .get('/authentication/me')

@@ -7,10 +7,6 @@ import Loading from './subcomponents/Loading';
 import './providers/styles/providers.css';
 
 class Inbox extends Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     this.props.retrieveMessages();
   }

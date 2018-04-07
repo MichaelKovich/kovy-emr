@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import axios from 'axios';
 import {retrieveVisits} from '../../ducks/reducer';
 
 import VisitCard from './subcomponents/VisitCard';
@@ -8,10 +7,6 @@ import Loading from '../subcomponents/Loading';
 import './styles/patients.css';
 
 class Visits extends Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     this.props.retrieveVisits();
   }

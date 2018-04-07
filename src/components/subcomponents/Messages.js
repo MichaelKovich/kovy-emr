@@ -11,7 +11,8 @@ const messages = props => (
           data-toggle="collapse"
           data-target={`#collapse${props.keyid}`}
         >
-          <img src={props.avatar} className="circle" height="32px" width="32px" /> {props.subject}
+          <img src={props.avatar} alt="User Avatar" className="circle" height="32px" width="32px" />{' '}
+          {props.subject}
         </button>
       </h5>
     </div>

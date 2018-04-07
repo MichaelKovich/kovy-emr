@@ -4,7 +4,6 @@ import {retrieveBillingItems} from '../../ducks/reducer';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
-import Loading from '../subcomponents/Loading';
 import './styles/patients.css';
 
 class Billing extends Component {

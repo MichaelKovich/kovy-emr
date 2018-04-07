@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {retrieveMyPatients, retrieveMyColleagues} from '../../ducks/reducer';
 import axios from 'axios';
 
-import Loading from '../subcomponents/Loading';
 import './styles/providers.css';
 
 class SendMessage extends Component {

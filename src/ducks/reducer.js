@@ -1,6 +1,4 @@
 import axios from 'axios';
-import React from 'react';
-import Redirect from 'react-router';
 
 const initialState = {
   username: '', // User's email address, a unique identifier
@@ -13,12 +11,13 @@ const initialState = {
   medications: [], // Pulls the patient's current medications.
   visitsMaster: [], // An array made up of all rows from Users, Visits, and Physicians joined.
   visits: [], // Pulls the patient's visit history.
-  myPatients: [], // Retrieves all patients that have had, or have upcoming, visits with the current physician user.
-  myColleagues: [], // Retrieves all physicians, minus the current physician user.
+  myPatients: [], // Stores all patients that have had, or have upcoming, visits with the current physician user.
+  myColleagues: [], // Stores all physicians, minus the current physician user.
   messages: [], // Contains all messages that have been sent to the current user.
   billingItems: [], // Contains all of the current user's billing items.
   billingItemsMaster: [], // Contains all billing items for all users.
-  myProviders: [], // Retrieves all of the providers associated with a patient (based on visits)
+  myProviders: [], // Stores all of the providers associated with a patient (based on visits)
+  profileData: [], // Stores the user's profile details
 };
 
 // AUTHENTICATION ACTION TYPES
@@ -39,6 +38,7 @@ const RETRIEVE_MESSAGES = 'RETRIEVE_MESSAGES';
 const RETRIEVE_BILLING_ITEMS = 'RETRIEVE_BILLING_ITEMS';
 const RETRIEVE_BILLING_ITEMS_MASTER = 'RETRIEVE_BILLING_ITEMS_MASTER';
 const RETRIEVE_MY_PROVIDERS = 'RETRIEVE_MY_PROVIDERS';
+const RETRIEVE_MY_PROFILE = 'RETRIEVE_MY_PROFILE';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -134,6 +134,12 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_MY_PROVIDERS}_FULFILLED`:
       return {...state, myProviders: action.payload, isLoading: false};
+
+    case `${RETRIEVE_MY_PROFILE}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_MY_PROFILE}_FULFILLED`:
+      return {...state, profileData: action.payload, isLoading: false};
 
     default:
       return state;
@@ -251,6 +257,14 @@ export const retrieveMyProviders = () => ({
   type: RETRIEVE_MY_PROVIDERS,
   payload: axios
     .get('/patients/data/my-providers')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveMyProfile = () => ({
+  type: RETRIEVE_MY_PROFILE,
+  payload: axios
+    .get('/data/get-profile')
     .then(res => res.data)
     .catch(err => console.log(err)),
 });

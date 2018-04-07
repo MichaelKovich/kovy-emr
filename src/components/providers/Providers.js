@@ -1,39 +1,6 @@
-// Dashboard.js will be for patients to access their own information.
-// Providers.js will be a dashboard for physicians to view and add information to a patient's record.
-
-// PROVIDERS:
-// Login Page
-// Processing Page
-// Homepage View
-// Select a patient
-// Patient Dashboard
-// Add Visit
-// Add Medication
-// Update Medication
-// Send Messages
-
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-
+import React from 'react';
 import Header from './subcomponents/Header';
-import Footer from './subcomponents/Footer';
-import Loading from '../subcomponents/Loading';
-import './styles/providers.css';
 
-class Providers extends Component {
-  constructor(props) {
-    super(props);
-  }
+const providers = () => <Header />;
 
-  render() {
-    return (
-      <div>
-        <Header />
-        {/* {this.props.isLoading ? <Loading /> : <div>Hello, {this.props.username}!</div>} */}
-        {/* <Footer /> */}
-      </div>
-    );
-  }
-}
-
-export default connect(state => state)(Providers);
+export default providers;

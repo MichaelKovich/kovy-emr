@@ -5,6 +5,7 @@ import {Switch, Route} from 'react-router-dom';
 import Homepage from './components/Homepage';
 import Processing from './components/Processing';
 import Inbox from './components/Inbox';
+import Profile from './components/Profile';
 
 // PATIENT COMPONENTS
 import Patients from './components/patients/Patients';
@@ -74,6 +75,15 @@ export default (
         </div>
       )}
       path="/patients/messages/send"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <Profile />
+        </div>
+      )}
+      path="/patients/profile"
     />
 
     <Route component={Providers} exact path="/providers" />
@@ -149,6 +159,15 @@ export default (
         </div>
       )}
       path="/providers/billing/update"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <Profile />
+        </div>
+      )}
+      path="/providers/profile"
     />
   </Switch>
 );
