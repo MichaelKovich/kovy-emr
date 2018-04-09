@@ -39,6 +39,13 @@
   background-color: white;
 }
 
+.profile {
+  width: 70%;
+  height: 80%;
+  margin: 0 auto;
+  margin-top: 1%;
+}
+
 /* LOADING SPINNER */
 
 .spinner {

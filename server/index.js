@@ -4,7 +4,6 @@ const {json} = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
 require('dotenv').config();
-const path = require('path'); // can probably remove this now
 
 // AUTHENTICATION DEPENDENCIES
 const session = require('express-session');
@@ -74,6 +73,19 @@ passport.use(strategy);
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
+// AMAZON S3
+app.use(
+  '/s3',
+  require('react-s3-uploader/s3router')({
+    bucket: 'iyashi-emr',
+    region: 'us-west-1',
+    signatureVersion: 'v4',
+    headers: {'Access-Control-Allow-Origin': '*'},
+    ACL: 'private',
+    uniquePrefix: true, // (4.0.2 and above) default is true, setting the attribute to false preserves the original filename in S3
+  }),
+);
+
 // DIRECT EXPRESS TO SERVE STATIC FILES:
 app.use(express.static(`${__dirname}/../build`));
 
@@ -105,6 +117,7 @@ app.get('/patients/billing', sessionChecker, dashboardRouter);
 app.get('/patients/messages', sessionChecker, dashboardRouter);
 app.get('/patients/messages/send', sessionChecker, dashboardRouter);
 app.get('/patients/profile', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/patients/profile/picture', sessionChecker, physicianChecker, dashboardRouter);
 
 // PATIENT DATA ROUTES
 app.get('/patients/data/visits', sessionChecker, getVisits);
@@ -123,6 +136,7 @@ app.get('/providers/messages/send', sessionChecker, physicianChecker, dashboardR
 app.get('/providers/billing/add', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/billing/update', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/profile', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/profile/picture', sessionChecker, physicianChecker, dashboardRouter);
 
 // PROVIDER DATA ROUTES
 app.get('/providers/data/patients', sessionChecker, physicianChecker, getPatients);

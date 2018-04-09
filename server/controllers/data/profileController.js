@@ -41,7 +41,17 @@ const updateProfile = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
+const updateProfilePicture = (req, res, next) => {
+  const db = req.app.get('db');
+
+  db
+    .update_profile_picture([req.body.file, req.session.user.emails[0].value])
+    .then()
+    .catch(err => console.log(err));
+};
+
 module.exports = {
   getProfile,
   updateProfile,
+  updateProfilePicture,
 };

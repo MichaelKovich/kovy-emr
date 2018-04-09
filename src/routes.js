@@ -83,6 +83,7 @@ export default (
           <Profile />
         </div>
       )}
+      exact
       path="/patients/profile"
     />
 
@@ -167,6 +168,7 @@ export default (
           <Profile />
         </div>
       )}
+      exact
       path="/providers/profile"
     />
   </Switch>

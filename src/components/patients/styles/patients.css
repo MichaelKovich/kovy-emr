@@ -1,6 +1,7 @@
 #navigation,
 .visits-grid-wrapper,
-.medications-grid-wrapper {
+.medications-grid-wrapper,
+body {
   font-family: 'Raleway', sans-serif;
 }
 
