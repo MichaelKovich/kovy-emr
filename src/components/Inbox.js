@@ -25,6 +25,7 @@ class Inbox extends Component {
           subject={message.subject}
           content={message.content}
           avatar={message.picture}
+          date={message.date}
         />
       ));
     }

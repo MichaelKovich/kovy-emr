@@ -7,8 +7,11 @@ const sendMessage = (req, res, next) => {
   const db = req.app.get('db');
   const {recipientid} = req.body;
 
+  const moment = require('moment');
+  const date = moment().format('MMMM Do YYYY, h:mm a');
+
   db
-    .prov_send_message([recipientid, req.body.senderid, req.body.subject, req.body.content])
+    .prov_send_message([recipientid, req.body.senderid, req.body.subject, req.body.content, date])
     .then((response) => {
       console.log('Send Message Process Complete');
       // run a check on senderid boolean and phone number

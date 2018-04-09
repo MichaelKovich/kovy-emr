@@ -19,7 +19,11 @@ const messages = props => (
 
     <div id={`collapse${props.keyid}`} className="collapse" data-parent="#accordion">
       <div className="card-body" id="message-body">
-        <p id="sender-line">FROM: {props.sender}</p>
+        <p>
+          FROM: {props.sender}
+          <br />
+          DATE: {props.date}
+        </p>
         <p>{props.content}</p>
       </div>
     </div>
