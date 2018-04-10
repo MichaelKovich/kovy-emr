@@ -17,7 +17,9 @@ const initialState = {
   billingItems: [], // Contains all of the current user's billing items.
   billingItemsMaster: [], // Contains all billing items for all users.
   myProviders: [], // Stores all of the providers associated with a patient (based on visits)
-  profileData: [], // Stores the user's profile details
+  profileData: [], // Stores the user's profile details,
+  genomicsToken: false, // Indicates whether the user has a 23AndMe token.
+  genomicsData: [], // Stores the user's genomics data, retrieved from 23AndMe.
 };
 
 // AUTHENTICATION ACTION TYPES
@@ -39,6 +41,8 @@ const RETRIEVE_BILLING_ITEMS = 'RETRIEVE_BILLING_ITEMS';
 const RETRIEVE_BILLING_ITEMS_MASTER = 'RETRIEVE_BILLING_ITEMS_MASTER';
 const RETRIEVE_MY_PROVIDERS = 'RETRIEVE_MY_PROVIDERS';
 const RETRIEVE_MY_PROFILE = 'RETRIEVE_MY_PROFILE';
+const CHECK_TOKEN = 'CHECK_TOKEN';
+const RETRIEVE_REPORTS = 'RETRIEVE_REPORTS';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -140,6 +144,15 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_MY_PROFILE}_FULFILLED`:
       return {...state, profileData: action.payload, isLoading: false};
+
+    case CHECK_TOKEN:
+      return {...state, genomicsToken: action.payload};
+
+    case `${RETRIEVE_REPORTS}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_REPORTS}_FULFILLED`:
+      return {...state, genomicsData: action.payload, isLoading: false};
 
     default:
       return state;
@@ -265,6 +278,19 @@ export const retrieveMyProfile = () => ({
   type: RETRIEVE_MY_PROFILE,
   payload: axios
     .get('/data/get-profile')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const checkToken = token => ({
+  type: CHECK_TOKEN,
+  payload: token,
+});
+
+export const retrieveReports = () => ({
+  type: RETRIEVE_REPORTS,
+  payload: axios
+    .get('/data/get-reports')
     .then(res => res.data)
     .catch(err => console.log(err)),
 });

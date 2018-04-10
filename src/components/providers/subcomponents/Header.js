@@ -81,9 +81,6 @@ class Header extends Component {
                 <Link className="dropdown-item" to="/providers/visits/update">
                   Update Visits
                 </Link>
-                <Link className="dropdown-item" to="#">
-                  Genomics
-                </Link>
               </div>
             </li>
             <li className="nav-item dropdown">

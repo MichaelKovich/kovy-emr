@@ -39,6 +39,9 @@ const {getBillingItemsMaster} = require(`${__dirname}/controllers/billing/billin
 const {getMyProviders} = require(`${__dirname}/controllers/data/providersController`);
 const {getProfile} = require(`${__dirname}/controllers/data/profileController`);
 const {updateProfile} = require(`${__dirname}/controllers/data/profileController`);
+const {receiveCode} = require(`${__dirname}/controllers/genomics/TTAMController`);
+const {checkToken} = require(`${__dirname}/controllers/genomics/TTAMController`);
+const {getReports} = require(`${__dirname}/controllers/genomics/TTAMController`);
 
 // BILLING CONTROLLER
 const {stripeCharge} = require(`${__dirname}/controllers/billing/stripeController`);
@@ -116,8 +119,11 @@ app.get('/patients/medications', sessionChecker, dashboardRouter);
 app.get('/patients/billing', sessionChecker, dashboardRouter);
 app.get('/patients/messages', sessionChecker, dashboardRouter);
 app.get('/patients/messages/send', sessionChecker, dashboardRouter);
-app.get('/patients/profile', sessionChecker, physicianChecker, dashboardRouter);
-app.get('/patients/profile/picture', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/patients/profile', sessionChecker, dashboardRouter);
+app.get('/patients/profile/picture', sessionChecker, dashboardRouter);
+app.get('/patients/genomics', sessionChecker, dashboardRouter);
+app.get('/patients/genomics/reports', sessionChecker, dashboardRouter);
+app.get('/patients/genomics/authorization', sessionChecker, dashboardRouter);
 
 // PATIENT DATA ROUTES
 app.get('/patients/data/visits', sessionChecker, getVisits);
@@ -171,6 +177,11 @@ app.put('/data/update-profile', sessionChecker, updateProfile);
 
 // PAYMENT DATA ROUTE
 app.post('/patients/billing/charge', sessionChecker, stripeCharge);
+
+// 23ANDME ROUTE
+app.get('/receive_code', sessionChecker, receiveCode);
+app.get('/data/token', sessionChecker, checkToken);
+app.get('/data/get-reports', sessionChecker, getReports);
 
 // 404 Route
 // app.get('*', function(req, res){

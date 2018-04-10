@@ -13,6 +13,9 @@ import Visits from './components/patients/Visits';
 import Medications from './components/patients/Medications';
 import Billing from './components/patients/Billing';
 import PatientSend from './components/patients/SendMessage';
+import Genomics from './components/patients/Genomics';
+import GenomicsReports from './components/patients/GenomicsReports';
+import GenomicsAuthorization from './components/patients/GenomicsAuthorization';
 
 // PROVIDER COMPONENTS
 import Providers from './components/providers/Providers';
@@ -85,6 +88,33 @@ export default (
       )}
       exact
       path="/patients/profile"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Genomics />
+        </div>
+      )}
+      exact
+      path="/patients/genomics"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <GenomicsReports />
+        </div>
+      )}
+      path="/patients/genomics/reports"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <GenomicsAuthorization />
+        </div>
+      )}
+      path="/patients/genomics/authorization"
     />
 
     <Route component={Providers} exact path="/providers" />

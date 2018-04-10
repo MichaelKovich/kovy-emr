@@ -12,7 +12,7 @@ const homepage = () => (
     <div className="homepage-center">
       <div>
         <a href="/authentication/login">
-          <Button title="癒す" subtitle="Login" />
+          <Button title="Login" />
         </a>
       </div>
     </div>
