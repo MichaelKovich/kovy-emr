@@ -43,6 +43,10 @@ const {receiveCode} = require(`${__dirname}/controllers/genomics/TTAMController`
 const {checkToken} = require(`${__dirname}/controllers/genomics/TTAMController`);
 const {getReports} = require(`${__dirname}/controllers/genomics/TTAMController`);
 
+// TEST
+const {registrationEmail} = require(`${__dirname}/nodemailer.js`);
+// TEST
+
 // BILLING CONTROLLER
 const {stripeCharge} = require(`${__dirname}/controllers/billing/stripeController`);
 
@@ -182,6 +186,10 @@ app.post('/patients/billing/charge', sessionChecker, stripeCharge);
 app.get('/receive_code', sessionChecker, receiveCode);
 app.get('/data/token', sessionChecker, checkToken);
 app.get('/data/get-reports', sessionChecker, getReports);
+
+// TEST
+app.get('/data/send', registrationEmail);
+// TEST
 
 // 404 Route
 // app.get('*', function(req, res){

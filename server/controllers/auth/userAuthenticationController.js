@@ -1,3 +1,5 @@
+const {registrationEmail} = require('../../nodemailer');
+
 const userAuthentication = (req, res, next) => {
   const db = req.app.get('db');
 
@@ -23,6 +25,7 @@ const userAuthentication = (req, res, next) => {
             req.user.picture,
           ])
           .then((user) => {
+            registrationEmail(req.user.emails[0].value, req.user.name.givenName);
             next();
           })
           .catch((err) => {

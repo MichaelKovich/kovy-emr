@@ -81,12 +81,12 @@ class Profile extends Component {
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           marginBottom: '10px',
         }}
         className="profile"
       >
-        <div>
+        <div style={{marginRight: '2%'}}>
           {profileData && profileData.length > 0 ? (
             <ProfileForm
               update={this.updateProfile}
@@ -103,7 +103,7 @@ class Profile extends Component {
             <Loading />
           )}
         </div>
-        <div>
+        <div style={{marginTop: '1%'}}>
           {profileData && profileData.length > 0 ? (
             <ProfilePictureCard
               source={profileData[0].picture}

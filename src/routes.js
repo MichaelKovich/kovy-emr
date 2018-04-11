@@ -6,6 +6,7 @@ import Homepage from './components/Homepage';
 import Processing from './components/Processing';
 import Inbox from './components/Inbox';
 import Profile from './components/Profile';
+import Footer from './components/subcomponents/Footer';
 
 // PATIENT COMPONENTS
 import Patients from './components/patients/Patients';
@@ -38,6 +39,7 @@ export default (
         <div>
           <Patients />
           <Visits />
+          <Footer />
         </div>
       )}
       path="/patients/visits"
@@ -47,6 +49,7 @@ export default (
         <div>
           <Patients />
           <Medications />
+          <Footer />
         </div>
       )}
       path="/patients/medications"
@@ -56,6 +59,7 @@ export default (
         <div>
           <Patients />
           <Billing />
+          <Footer />
         </div>
       )}
       path="/patients/billing"
@@ -65,6 +69,7 @@ export default (
         <div>
           <Patients />
           <Inbox />
+          <Footer />
         </div>
       )}
       exact
@@ -75,6 +80,7 @@ export default (
         <div>
           <Patients />
           <PatientSend />
+          <Footer />
         </div>
       )}
       path="/patients/messages/send"
@@ -84,6 +90,7 @@ export default (
         <div>
           <Patients />
           <Profile />
+          <Footer />
         </div>
       )}
       exact
@@ -103,6 +110,7 @@ export default (
         <div>
           <Patients />
           <GenomicsReports />
+          <Footer />
         </div>
       )}
       path="/patients/genomics/reports"
@@ -112,6 +120,7 @@ export default (
         <div>
           <Patients />
           <GenomicsAuthorization />
+          <Footer />
         </div>
       )}
       path="/patients/genomics/authorization"
@@ -123,6 +132,7 @@ export default (
         <div>
           <Providers />
           <MedicationsAdd />
+          <Footer />
         </div>
       )}
       path="/providers/medications/add"
@@ -132,6 +142,7 @@ export default (
         <div>
           <Providers />
           <MedicationsUpdate />
+          <Footer />
         </div>
       )}
       path="/providers/medications/update"
@@ -141,6 +152,7 @@ export default (
         <div>
           <Providers />
           <VisitsAdd />
+          <Footer />
         </div>
       )}
       path="/providers/visits/add"
@@ -150,6 +162,7 @@ export default (
         <div>
           <Providers />
           <VisitsUpdate />
+          <Footer />
         </div>
       )}
       path="/providers/visits/update"
@@ -159,6 +172,7 @@ export default (
         <div>
           <Providers />
           <Inbox />
+          <Footer />
         </div>
       )}
       exact
@@ -169,6 +183,7 @@ export default (
         <div>
           <Providers />
           <SendMessage />
+          <Footer />
         </div>
       )}
       path="/providers/messages/send"
@@ -178,6 +193,7 @@ export default (
         <div>
           <Providers />
           <BillingAdd />
+          <Footer />
         </div>
       )}
       path="/providers/billing/add"
@@ -187,6 +203,7 @@ export default (
         <div>
           <Providers />
           <BillingUpdate />
+          <Footer />
         </div>
       )}
       path="/providers/billing/update"
@@ -196,6 +213,7 @@ export default (
         <div>
           <Providers />
           <Profile />
+          <Footer />
         </div>
       )}
       exact

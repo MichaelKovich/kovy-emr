@@ -32,7 +32,9 @@
 .homepage-center {
   border-style: solid;
   border-width: 2px;
-  background-image: url('./assets/r.jpg');
+  background-image: url('https://s3-us-west-1.amazonaws.com/iyashi-emr/hr.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 .homepage-bottom {
