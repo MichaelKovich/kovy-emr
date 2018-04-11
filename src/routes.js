@@ -33,7 +33,16 @@ export default (
     <Route component={Homepage} exact path="/" />
     <Route component={Processing} path="/processing" />
 
-    <Route component={Patients} exact path="/patients" />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <Footer />
+        </div>
+      )}
+      exact
+      path="/patients"
+    />
     <Route
       component={() => (
         <div>
@@ -126,7 +135,16 @@ export default (
       path="/patients/genomics/authorization"
     />
 
-    <Route component={Providers} exact path="/providers" />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <Footer />
+        </div>
+      )}
+      exact
+      path="/providers"
+    />
     <Route
       component={() => (
         <div>

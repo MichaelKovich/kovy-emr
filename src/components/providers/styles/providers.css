@@ -9,6 +9,14 @@ body {
   margin-left: 25%;
   margin-right: 25%;
   margin-top: 1%;
+  min-height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
 }
 
 .message {

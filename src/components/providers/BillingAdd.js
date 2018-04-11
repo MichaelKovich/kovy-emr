@@ -40,10 +40,11 @@ class BillingAdd extends Component {
 
     if (this.props.patients && this.props.patients.length > 0) {
       mappedPatients = this.props.patients.map(patient => (
-      <option value={patient.userid}>
-        {patient.userid} | {patient.given_name} {patient.family_name}
-      </option>
-    ))};
+        <option value={patient.userid}>
+          {patient.userid} | {patient.given_name} {patient.family_name}
+        </option>
+      ));
+    }
 
     return (
       <div className="medications-c2">
@@ -58,8 +59,10 @@ class BillingAdd extends Component {
               required
               onChange={event => this.setState({patientid: event.target.value})}
             >
-              <option selected disabled>Please select a patient.</option>
-              {(this.props.patients && this.props.patients.length > 0) ? mappedPatients : null}
+              <option selected disabled>
+                Please select a patient.
+              </option>
+              {this.props.patients && this.props.patients.length > 0 ? mappedPatients : null}
             </select>
           </div>
           <div className="form-group">
@@ -85,7 +88,9 @@ class BillingAdd extends Component {
               step="0.01"
               required
               rows="1"
-              onChange={event => this.setState({amount: Number(event.target.value.replace(/[$,.]/g, ""))})}
+              onChange={event =>
+                this.setState({amount: Number(event.target.value.replace(/[$,.]/g, ''))})
+              }
             />
           </div>
           <button type="submit" className="btn btn-secondary">
@@ -95,7 +100,6 @@ class BillingAdd extends Component {
       </div>
     );
   }
-
 }
 
 export default connect(state => state, {retrievePatients})(BillingAdd);
