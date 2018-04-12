@@ -14,7 +14,7 @@ class Header extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
         <Link className="navbar-brand" to="/providers">
-          Iyashi EMR | Providers
+          IyashiEMR | <span style={{color: '#5383d3'}}>Providers</span>
         </Link>
         <button
           className="navbar-toggler"

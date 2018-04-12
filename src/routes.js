@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 
 // UNIVERSAL COMPONENTS
 import Homepage from './components/Homepage';
@@ -7,6 +7,7 @@ import Processing from './components/Processing';
 import Inbox from './components/Inbox';
 import Profile from './components/Profile';
 import Footer from './components/subcomponents/Footer';
+import NotFound from './components/subcomponents/NotFound';
 
 // PATIENT COMPONENTS
 import Patients from './components/patients/Patients';
@@ -237,5 +238,7 @@ export default (
       exact
       path="/providers/profile"
     />
+    <Route path="/404" component={NotFound} />
+    <Redirect from="*" to="/404" />
   </Switch>
 );

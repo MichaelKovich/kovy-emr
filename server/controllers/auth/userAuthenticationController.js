@@ -25,7 +25,7 @@ const userAuthentication = (req, res, next) => {
             req.user.picture,
           ])
           .then((user) => {
-            registrationEmail(req.user.emails[0].value, req.user.name.givenName);
+            registrationEmail(req.user.emails[0].value);
             next();
           })
           .catch((err) => {

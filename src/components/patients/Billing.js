@@ -64,7 +64,7 @@ class Billing extends Component {
     }
 
     return (
-      <div className="medications-c2">
+      <div className="medications-c2" style={{width: '40%', marginLeft: '30%', marginRight: '30%'}}>
         <form>
           <div className="form-group">
             <label htmlFor="exampleFormControlSelect1">Outstanding Bills:</label>

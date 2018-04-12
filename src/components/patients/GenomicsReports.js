@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {retrieveReports} from '../../ducks/reducer';
 
 import Loading from '../subcomponents/Loading';
+import './styles/patients.css';
 
 class GenomicsReports extends Component {
   constructor() {

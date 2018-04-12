@@ -191,10 +191,8 @@ app.get('/data/get-reports', sessionChecker, getReports);
 app.get('/data/send', registrationEmail);
 // TEST
 
-// 404 Route
-// app.get('*', function(req, res){
-//   console.log('404');
-// });
+// 404 ROUTE
+app.get('*', dashboardRouter)
 
 // LISTENING
 const port = process.env.PORT || 3000;
