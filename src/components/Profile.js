@@ -65,7 +65,7 @@ class Profile extends Component {
         phone: phone || profileData[0].phone,
         notifications: notifications || profileData[0].notifications,
       })
-      .then(this.props.retrieveMyProfile)
+      .then(res => this.props.retrieveMyProfile())
       .catch(err => console.log(err));
   }
 

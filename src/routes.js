@@ -115,7 +115,6 @@ export default (
           <Footer />
         </div>
       )}
-      exact
       path="/patients/profile"
     />
     <Route
@@ -247,7 +246,6 @@ export default (
           <Footer />
         </div>
       )}
-      exact
       path="/providers/profile"
     />
     <Route path="/404" component={NotFound} />

@@ -127,7 +127,6 @@ app.get('/patients/billing/history', sessionChecker, dashboardRouter);
 app.get('/patients/messages', sessionChecker, dashboardRouter);
 app.get('/patients/messages/send', sessionChecker, dashboardRouter);
 app.get('/patients/profile', sessionChecker, dashboardRouter);
-app.get('/patients/profile/picture', sessionChecker, dashboardRouter);
 app.get('/patients/genomics', sessionChecker, dashboardRouter);
 app.get('/patients/genomics/reports', sessionChecker, dashboardRouter);
 app.get('/patients/genomics/authorization', sessionChecker, dashboardRouter);
@@ -151,7 +150,6 @@ app.get('/providers/messages/send', sessionChecker, physicianChecker, dashboardR
 app.get('/providers/billing/add', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/billing/update', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/profile', sessionChecker, physicianChecker, dashboardRouter);
-app.get('/providers/profile/picture', sessionChecker, physicianChecker, dashboardRouter);
 
 // PROVIDER DATA ROUTES
 app.get('/providers/data/patients', sessionChecker, physicianChecker, getPatients);
@@ -192,9 +190,9 @@ app.get('/receive_code', sessionChecker, receiveCode);
 app.get('/data/token', sessionChecker, checkToken);
 app.get('/data/get-reports', sessionChecker, getReports);
 
-// TEST
+// TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
 app.get('/data/send', registrationEmail);
-// TEST
+// TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
 
 // 404 ROUTE
 app.get('*', dashboardRouter);

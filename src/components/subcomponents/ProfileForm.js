@@ -33,7 +33,7 @@ class ProfileForm extends Component {
 
     return (
       <form
-        onSubmit={this.props.update(this.state)}
+        onSubmit={() => this.props.update(this.state)}
         style={{marginBottom: '1%', fontFamily: 'Raleway'}}
       >
         <div className="form-row">
