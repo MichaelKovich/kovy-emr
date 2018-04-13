@@ -4,7 +4,7 @@ import {retrieveMedications} from '../../ducks/reducer';
 
 import MedicationCard from './subcomponents/MedicationCard';
 import Loading from '../subcomponents/Loading';
-import './styles/patients.css';
+import '../../App.css';
 
 class Medications extends Component {
   componentDidMount() {
@@ -12,6 +12,18 @@ class Medications extends Component {
   }
 
   render() {
+    const styles = {
+      width: '80%',
+      marginLeft: '10%',
+      marginRight: '10%',
+      marginTop: '1%',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gridGap: '10px',
+      minHeight: '60vh',
+      fontFamily: 'Raleway',
+    };
+
     let mappedMedications = [];
 
     if (this.props.medications && this.props.medications.length > 0) {
@@ -27,7 +39,7 @@ class Medications extends Component {
     return (
       <div>
         {this.props.medications && this.props.medications.length > 0 ? (
-          <div className="medications-grid-wrapper">{mappedMedications}</div>
+          <div style={styles}>{mappedMedications}</div>
         ) : (
           <Loading />
         )}

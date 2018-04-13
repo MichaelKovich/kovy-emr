@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {userAuthenticate} from '../../../ducks/reducer';
 import {Link} from 'react-router-dom';
 
-import '../styles/providers.css';
+import '../../../App.css';
 
 class Header extends Component {
   componentWillMount(req, res, next) {
@@ -11,9 +11,11 @@ class Header extends Component {
   }
 
   render() {
+    const style = {fontFamily: 'Raleway'};
+
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-        <Link className="navbar-brand" to="/providers">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={style}>
+        <Link className="navbar-brand" to="/providers" style={{marginLeft: '1%'}}>
           IyashiEMR | <span style={{color: '#5383d3'}}>Providers</span>
         </Link>
         <button

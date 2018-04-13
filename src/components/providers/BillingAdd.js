@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {retrievePatients} from '../../ducks/reducer';
 
 import axios from 'axios';
-import './styles/providers.css';
+import '../../App.css';
 
 class BillingAdd extends Component {
   constructor() {
@@ -36,6 +36,22 @@ class BillingAdd extends Component {
   }
 
   render() {
+    const styles = {
+      width: '50%',
+      height: '80%',
+      marginLeft: '25%',
+      marginRight: '25%',
+      marginTop: '1%',
+      minHeight: '60vh',
+      display: 'flex',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      justifyContent: 'center',
+      alignItems: 'stretch',
+      alignContent: 'center',
+      fontFamily: 'Raleway',
+    };
+
     let mappedPatients = [];
 
     if (this.props.patients && this.props.patients.length > 0) {
@@ -47,7 +63,7 @@ class BillingAdd extends Component {
     }
 
     return (
-      <div className="medications-c2">
+      <div style={styles}>
         <form onSubmit={this.billingAdd}>
           <h2>Add Bill</h2>
           <hr />

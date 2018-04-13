@@ -7,6 +7,7 @@ import {withRouter} from 'react-router';
 import GenomicsReports from './GenomicsReports';
 import GenomicsAuthorization from './GenomicsAuthorization';
 import Loading from '../subcomponents/Loading';
+import '../../App.css';
 
 class Genomics extends Component {
   constructor(props) {

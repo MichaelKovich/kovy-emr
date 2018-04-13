@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactS3Uploader from 'react-s3-uploader';
 
-import '../providers/styles/providers.css';
+import '../../App.css';
 
 class ProfilePictureCard extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class ProfilePictureCard extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{fontFamily: 'Raleway'}}>
         <img
           src={this.props.source}
           alt="Profile Picture"

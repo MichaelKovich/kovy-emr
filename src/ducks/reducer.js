@@ -14,7 +14,8 @@ const initialState = {
   myPatients: [], // Stores all patients that have had, or have upcoming, visits with the current physician user.
   myColleagues: [], // Stores all physicians, minus the current physician user.
   messages: [], // Contains all messages that have been sent to the current user.
-  billingItems: [], // Contains all of the current user's billing items.
+  billingItems: [], // Contains the current user's unpaid billing items.
+  billingHistory: [], // Contains all of the current user's billing items.
   billingItemsMaster: [], // Contains all billing items for all users.
   myProviders: [], // Stores all of the providers associated with a patient (based on visits)
   profileData: [], // Stores the user's profile details,
@@ -38,6 +39,7 @@ const RETRIEVE_MY_PATIENTS = 'RETRIEVE_MY_PATIENTS';
 const RETRIEVE_MY_COLLEAGUES = 'RETRIEVE_MY_COLLEAGUES';
 const RETRIEVE_MESSAGES = 'RETRIEVE_MESSAGES';
 const RETRIEVE_BILLING_ITEMS = 'RETRIEVE_BILLING_ITEMS';
+const RETRIEVE_BILLING_HISTORY = 'RETRIEVE_BILLING_HISTORY';
 const RETRIEVE_BILLING_ITEMS_MASTER = 'RETRIEVE_BILLING_ITEMS_MASTER';
 const RETRIEVE_MY_PROVIDERS = 'RETRIEVE_MY_PROVIDERS';
 const RETRIEVE_MY_PROFILE = 'RETRIEVE_MY_PROFILE';
@@ -126,6 +128,12 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_BILLING_ITEMS}_FULFILLED`:
       return {...state, billingItems: action.payload, isLoading: false};
+
+    case `${RETRIEVE_BILLING_HISTORY}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_BILLING_HISTORY}_FULFILLED`:
+      return {...state, billingHistory: action.payload, isLoading: false};
 
     case `${RETRIEVE_BILLING_ITEMS_MASTER}_PENDING`:
       return {...state, isLoading: true};
@@ -254,6 +262,14 @@ export const retrieveBillingItems = () => ({
   type: RETRIEVE_BILLING_ITEMS,
   payload: axios
     .get('/patients/data/get-billing-items')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveBillingHistory = () => ({
+  type: RETRIEVE_BILLING_HISTORY,
+  payload: axios
+    .get('/patients/data/get-billing-history')
     .then(res => res.data)
     .catch(err => console.log(err)),
 });

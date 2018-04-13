@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import '../../App.css';
+
 class ProfileForm extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,10 @@ class ProfileForm extends Component {
     } = this.props;
 
     return (
-      <form onSubmit={this.props.update(this.state)} style={{marginBottom: '1%'}}>
+      <form
+        onSubmit={this.props.update(this.state)}
+        style={{marginBottom: '1%', fontFamily: 'Raleway'}}
+      >
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="exampleFormControlInput1">First Name:</label>

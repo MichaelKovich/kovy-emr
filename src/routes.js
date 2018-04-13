@@ -14,6 +14,7 @@ import Patients from './components/patients/Patients';
 import Visits from './components/patients/Visits';
 import Medications from './components/patients/Medications';
 import Billing from './components/patients/Billing';
+import BillingHistory from './components/patients/BillingHistory';
 import PatientSend from './components/patients/SendMessage';
 import Genomics from './components/patients/Genomics';
 import GenomicsReports from './components/patients/GenomicsReports';
@@ -72,7 +73,18 @@ export default (
           <Footer />
         </div>
       )}
+      exact
       path="/patients/billing"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <BillingHistory />
+          <Footer />
+        </div>
+      )}
+      path="/patients/billing/history"
     />
     <Route
       component={() => (

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {retrieveReports} from '../../ducks/reducer';
 
 import Loading from '../subcomponents/Loading';
-import './styles/patients.css';
+import '../../App.css';
 
 class GenomicsReports extends Component {
   constructor() {
@@ -15,6 +15,14 @@ class GenomicsReports extends Component {
   }
 
   render() {
+    const styles = {
+      width: '50%',
+      height: '80%',
+      marginLeft: '25%',
+      marginRight: '25%',
+      fontFamily: 'Raleway',
+    };
+
     let mappedReports = [];
 
     if (this.props.genomicsData && this.props.genomicsData.length > 0) {
@@ -25,18 +33,8 @@ class GenomicsReports extends Component {
       ));
     }
 
-    // if (this.props.medications && this.props.medications.length > 0) {
-    //   mappedMedications = this.props.medications.map(medication => (
-    //     <MedicationCard
-    //       medicationname={medication.medication_name}
-    //       dosage={medication.dosage}
-    //       prescribed={medication.prescribed ? 'Prescription' : 'Over-the-Counter'}
-    //     />
-    //   ));
-    // }
-
     return (
-      <div className="medications-c2">
+      <div style={styles}>
         {this.props.genomicsData && this.props.genomicsData.length > 0 ? (
           <div>{mappedReports}</div>
         ) : (

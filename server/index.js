@@ -33,6 +33,7 @@ const {getMyColleagues} = require(`${__dirname}/controllers/data/providersContro
 const {sendMessage} = require(`${__dirname}/controllers/data/messagesController`);
 const {getMessages} = require(`${__dirname}/controllers/data/messagesController`);
 const {getBillingItems} = require(`${__dirname}/controllers/billing/billingController`);
+const {getBillingHistory} = require(`${__dirname}/controllers/billing/billingController`);
 const {addBill} = require(`${__dirname}/controllers/billing/billingController`);
 const {updateBill} = require(`${__dirname}/controllers/billing/billingController`);
 const {getBillingItemsMaster} = require(`${__dirname}/controllers/billing/billingController`);
@@ -121,6 +122,7 @@ app.get('/patients', sessionChecker, dashboardRouter);
 app.get('/patients/visits', sessionChecker, dashboardRouter);
 app.get('/patients/medications', sessionChecker, dashboardRouter);
 app.get('/patients/billing', sessionChecker, dashboardRouter);
+app.get('/patients/billing/history', sessionChecker, dashboardRouter);
 app.get('/patients/messages', sessionChecker, dashboardRouter);
 app.get('/patients/messages/send', sessionChecker, dashboardRouter);
 app.get('/patients/profile', sessionChecker, dashboardRouter);
@@ -133,6 +135,7 @@ app.get('/patients/genomics/authorization', sessionChecker, dashboardRouter);
 app.get('/patients/data/visits', sessionChecker, getVisits);
 app.get('/patients/data/medications', sessionChecker, getMedications);
 app.get('/patients/data/get-billing-items', sessionChecker, getBillingItems);
+app.get('/patients/data/get-billing-history', sessionChecker, getBillingHistory);
 app.get('/patients/data/my-providers', sessionChecker, getMyProviders);
 
 // PROVIDER FRONT-END ROUTES
@@ -192,7 +195,7 @@ app.get('/data/send', registrationEmail);
 // TEST
 
 // 404 ROUTE
-app.get('*', dashboardRouter)
+app.get('*', dashboardRouter);
 
 // LISTENING
 const port = process.env.PORT || 3000;

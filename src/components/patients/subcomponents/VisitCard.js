@@ -1,9 +1,10 @@
 import React from 'react';
-import '../styles/patients.css';
+
+import '../../../App.css';
 
 function visitCard(props) {
   return (
-    <div className="card visit-card">
+    <div className="card" style={{marginTop: '5px', fontFamily: 'Raleway'}}>
       <div className="card-body">
         <h5 className="card-title">{props.date}</h5>
         {/* <h6 className="card-subtitle mb-2 t ext-muted">Card subtitle</h6> */}

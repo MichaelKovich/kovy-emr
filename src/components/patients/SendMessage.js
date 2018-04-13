@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {retrieveMyProviders} from '../../ducks/reducer';
 import axios from 'axios';
 
-import './styles/patients.css';
+import '../../App.css';
 
 class SendMessage extends Component {
   constructor() {
@@ -38,6 +38,16 @@ class SendMessage extends Component {
   }
 
   render() {
+    const styles = {
+      width: '50%',
+      height: '80%',
+      marginLeft: '25%',
+      marginRight: '25%',
+      marginTop: '1%',
+      minHeight: '60vh',
+      fontFamily: 'Raleway',
+    };
+
     let mappedProviders = [];
 
     if (this.props.myProviders && this.props.myProviders.length > 0) {
@@ -49,7 +59,7 @@ class SendMessage extends Component {
     }
 
     return (
-      <div className="medications-c2">
+      <div style={styles}>
         <form onSubmit={this.sendMessage}>
           <h2>Send a Message</h2>
           <hr />

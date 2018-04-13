@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {retrievePatients, retrieveMedicationsMaster} from '../../ducks/reducer';
 
 import axios from 'axios';
-import './styles/providers.css';
+import '../../App.css';
 
 class MedicationsUpdate extends Component {
   constructor() {
@@ -87,6 +87,22 @@ class MedicationsUpdate extends Component {
   }
 
   render() {
+    const styles = {
+      width: '50%',
+      height: '80%',
+      marginLeft: '25%',
+      marginRight: '25%',
+      marginTop: '1%',
+      minHeight: '60vh',
+      display: 'flex',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      justifyContent: 'center',
+      alignItems: 'stretch',
+      alignContent: 'center',
+      fontFamily: 'Raleway',
+    };
+
     // Mapping over all the patients in the database for use as options in the form below.
     const mappedPatients = this.props.patients.map(patient => (
       <option value={patient.userid}>
@@ -95,7 +111,7 @@ class MedicationsUpdate extends Component {
     ));
 
     return (
-      <div className="medications-c2">
+      <div style={styles}>
         <form onSubmit={this.updateMedication}>
           <h2>Update Medication</h2>
           <hr />

@@ -4,7 +4,6 @@ import {retrieveMessages} from '../ducks/reducer';
 
 import Messages from './subcomponents/Messages';
 import Loading from './subcomponents/Loading';
-import './providers/styles/providers.css';
 
 class Inbox extends Component {
   componentDidMount() {
@@ -12,6 +11,22 @@ class Inbox extends Component {
   }
 
   render() {
+    const styles = {
+      width: '50%',
+      height: '80%',
+      marginLeft: '25%',
+      marginRight: '25%',
+      marginTop: '1%',
+      minHeight: '60vh',
+      display: 'flex',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      justifyContent: 'center',
+      alignItems: 'stretch',
+      alignContent: 'center',
+      fontFamily: 'Raleway',
+    };
+
     let mappedMessages = [];
 
     if (this.props.messages && this.props.messages.length > 0) {
@@ -31,7 +46,7 @@ class Inbox extends Component {
     }
 
     return (
-      <div className="medications-c2" id="accordion">
+      <div style={styles} id="accordion">
         {this.props.messages && this.props.messages.length > 0 ? mappedMessages : <Loading />}
       </div>
     );

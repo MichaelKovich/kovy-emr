@@ -1,0 +1,1 @@
+SELECT * FROM billing WHERE patientid = $1 ORDER BY billid, paid ASC;

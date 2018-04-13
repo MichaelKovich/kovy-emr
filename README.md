@@ -2,7 +2,7 @@
 
 ### Technologies and Packages
 
-Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, React Router, Redux, Redux Promise Middleware, Axios, Request Promise, Twilio, Stripe, Amazon SES, Nodemailer, Amazon S3, React S3 Uploader, Moment, 23andMe API, Digital Ocean, Ubuntu, Nginx, Heroku PostgreSQL
+Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, React Router, Redux, Redux Promise Middleware, Axios, Request Promise, Twilio, Stripe, Amazon SES, Nodemailer, Amazon S3, React S3 Uploader, Moment.js, 23andMe API, Digital Ocean, Ubuntu, Nginx, Heroku PostgreSQL
 
 ### Provider and Patient Front-Ends
 
@@ -16,7 +16,7 @@ Authentication is handled via Auth0 and users are added to a PostgreSQL database
 
 The application also has a valid SSL certificate and runs over HTTPS.
 
-### Messages (Twilio, Moment)
+### Messages (Twilio, Moment.js)
 
 Users have the ability to indicate whether they'd like to receive notifications regarding new messages. If they've expressed interest in this, they'll receive a text message on their mobile device whenever they're sent a new message. This process is carried out with Twilio. Messages also display the profile picture of the sender, allowing patients and providers to put a face to the name, and the date and time the message was sent.
 

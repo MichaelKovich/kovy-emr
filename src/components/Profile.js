@@ -6,7 +6,6 @@ import axios from 'axios';
 import ProfilePictureCard from './subcomponents/ProfilePictureCard';
 import ProfileForm from './subcomponents/ProfileForm';
 import Loading from './subcomponents/Loading';
-import './providers/styles/providers.css';
 import '../App.css';
 
 class Profile extends Component {
@@ -73,19 +72,23 @@ class Profile extends Component {
   }
 
   render() {
+    const styles = {
+      width: '70%',
+      height: '80%',
+      margin: '0 auto',
+      marginTop: '1%',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      marginBottom: '10px',
+      fontFamily: 'Raleway',
+    };
+
     const {profileData} = this.props;
 
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          marginBottom: '10px',
-        }}
-        className="profile"
-      >
+      <div style={styles}>
         <div style={{marginRight: '2%'}}>
           {profileData && profileData.length > 0 ? (
             <ProfileForm

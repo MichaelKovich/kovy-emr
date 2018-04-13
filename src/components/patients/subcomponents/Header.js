@@ -3,17 +3,17 @@ import {connect} from 'react-redux';
 import {userAuthenticate} from '../../../ducks/reducer';
 import {Link} from 'react-router-dom';
 
-import '../styles/patients.css';
-
 class Header extends Component {
   componentWillMount(req, res, next) {
     this.props.userAuthenticate();
   }
 
   render() {
+    const style = {fontFamily: 'Raleway'};
+
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="navigation">
-        <Link className="navbar-brand" to="/patients">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={style}>
+        <Link className="navbar-brand" to="/patients" style={{marginLeft: '1%'}}>
           Iyashi<span style={{color: '#5383d3'}}>EMR</span>
         </Link>
         <button
@@ -96,7 +96,7 @@ class Header extends Component {
                 <Link className="dropdown-item" to="/patients/billing">
                   Pay a Bill
                 </Link>
-                <Link className="dropdown-item" to="#">
+                <Link className="dropdown-item" to="/patients/billing/history">
                   Billing History
                 </Link>
               </div>

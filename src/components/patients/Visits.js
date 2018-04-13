@@ -4,7 +4,7 @@ import {retrieveVisits} from '../../ducks/reducer';
 
 import VisitCard from './subcomponents/VisitCard';
 import Loading from '../subcomponents/Loading';
-import './styles/patients.css';
+import '../../App.css';
 
 class Visits extends Component {
   componentDidMount() {
@@ -12,6 +12,18 @@ class Visits extends Component {
   }
 
   render() {
+    const styles = {
+      width: '80%',
+      marginLeft: '10%',
+      marginRight: '10%',
+      marginTop: '1%',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gridGap: '10px',
+      minHeight: '60vh',
+      fontFamily: 'Raleway',
+    };
+
     let mappedVisits = [];
 
     if (this.props.visits && this.props.visits.length > 0) {
@@ -28,7 +40,7 @@ class Visits extends Component {
     return (
       <div>
         {this.props.visits && this.props.visits.length > 0 ? (
-          <div className="visits-grid-wrapper">{mappedVisits}</div>
+          <div style={styles}>{mappedVisits}</div>
         ) : (
           <Loading />
         )}

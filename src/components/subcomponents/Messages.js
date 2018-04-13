@@ -1,8 +1,10 @@
 import React from 'react';
-import '../providers/styles/providers.css';
+
+import './styles/messages.css';
+import '../../App.css';
 
 const messages = props => (
-  <div className="card message">
+  <div className="card message" style={{fontFamily: 'Raleway'}}>
     <div className="card-header" id={`heading${props.keyid}`}>
       <h5 className="mb-0">
         <button

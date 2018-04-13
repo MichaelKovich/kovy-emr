@@ -4,7 +4,7 @@ import {retrieveBillingItems} from '../../ducks/reducer';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
-import './styles/patients.css';
+import '../../App.css';
 
 class Billing extends Component {
   constructor() {
@@ -50,6 +50,16 @@ class Billing extends Component {
   }
 
   render() {
+    const styles = {
+      width: '40%',
+      height: '80%',
+      marginLeft: '30%',
+      marginRight: '30%',
+      marginTop: '1%',
+      minHeight: '60vh',
+      fontFamily: 'Raleway',
+    };
+
     let mappedItems = [];
 
     const re = /\b(\d+)(\d{2})\b/;
@@ -64,10 +74,12 @@ class Billing extends Component {
     }
 
     return (
-      <div className="medications-c2" style={{width: '40%', marginLeft: '30%', marginRight: '30%'}}>
+      <div style={styles}>
         <form>
           <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Outstanding Bills:</label>
+            <label htmlFor="exampleFormControlSelect1" style={{fontSize: '120%'}}>
+              Outstanding Bills:
+            </label>
             <select
               className="form-control"
               id="exampleFormControlSelect1"
