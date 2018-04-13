@@ -49,7 +49,7 @@ class ProfilePictureCard extends Component {
         {this.state.completed === 0 ? (
           <p>Please select an image to upload.</p>
         ) : this.state.completed === 100 ? (
-          <p>Photo received. Click "Submit" when ready!</p>
+          <p>Photo received. Click "Update" when ready!</p>
         ) : (
           <div>
             <div
