@@ -42,6 +42,7 @@ const updateProfile = (req, res, next) => {
 };
 
 const updateProfilePicture = (req, res, next) => {
+  console.log('Profile is updating!');
   const db = req.app.get('db');
 
   db

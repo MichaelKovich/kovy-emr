@@ -27,6 +27,7 @@ const {getMedications} = require(`${__dirname}/controllers/data/medicationsContr
 const {addVisit} = require(`${__dirname}/controllers/data/visitsController`);
 const {getVisitsMaster} = require(`${__dirname}/controllers/data/visitsController`);
 const {updateVisit} = require(`${__dirname}/controllers/data/visitsController`);
+const {cancelVisit} = require(`${__dirname}/controllers/data/visitsController`);
 const {getVisits} = require(`${__dirname}/controllers/data/visitsController`);
 const {getMyPatients} = require(`${__dirname}/controllers/data/patientsController`);
 const {getMyColleagues} = require(`${__dirname}/controllers/data/providersController`);
@@ -133,6 +134,7 @@ app.get('/patients/genomics/authorization', sessionChecker, dashboardRouter);
 
 // PATIENT DATA ROUTES
 app.get('/patients/data/visits', sessionChecker, getVisits);
+app.put('/patients/data/cancel-visit/:id', sessionChecker, cancelVisit);
 app.get('/patients/data/medications', sessionChecker, getMedications);
 app.get('/patients/data/get-billing-items', sessionChecker, getBillingItems);
 app.get('/patients/data/get-billing-history', sessionChecker, getBillingHistory);

@@ -6,9 +6,9 @@ Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, Rea
 
 ### Provider and Patient Front-Ends
 
-Providers are able to view their dashboard, check their messages, send messages to patients with whom they've had, or will have, visits and their colleagues, add medications to a patient's record, update a patient's medication record, add a visit with a patient, and update a visit.
+Providers are able to view their dashboard, check their messages, send messages to patients with whom they've had, or will have, visits and their colleagues, update their profile, add medications to a patient's record, update a patient's medication record, add a visit with a patient, update a visit. They can also opt-in to receive SMS notifications of new messages and cancelled visits.
 
-Patients are able to view their dashboard, their medications (name, dosage, and whether it's a prescription or OTC), and their visits (date, type of visit, and the provider). Patients are also able to pay outstanding bills from within the application.
+Patients are able to view their dashboard, their medications (name, dosage, and whether it's a prescription or OTC), and their visits (date, type of visit, and the provider). Patients can cancel visits (so long as they're at least 24 hours in the future), pay their outstanding medical bills, view their billing history, update their profile, and opt-in to receive SMS notifications of new messages.
 
 ### Security and Authentication
 
@@ -18,7 +18,7 @@ The application also has a valid SSL certificate and runs over HTTPS.
 
 ### Messages (Twilio, Moment.js)
 
-Users have the ability to indicate whether they'd like to receive notifications regarding new messages. If they've expressed interest in this, they'll receive a text message on their mobile device whenever they're sent a new message. This process is carried out with Twilio. Messages also display the profile picture of the sender, allowing patients and providers to put a face to the name, and the date and time the message was sent.
+Users have the ability to indicate whether they'd like to receive notifications regarding new messages. If they've expressed interest in this (by setting "Receive Notifications" to "Yes" on their profile), they'll receive a text message on their mobile device whenever they're sent a new message. This process is carried out with Twilio. Messages also display the profile picture of the sender, allowing patients and providers to put a face to the name, and the date and time the message was sent.
 
 ### Billing (Stripe)
 
