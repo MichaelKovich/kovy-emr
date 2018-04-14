@@ -307,6 +307,10 @@ export const retrieveReports = () => ({
   type: RETRIEVE_REPORTS,
   payload: axios
     .get('/data/get-reports')
-    .then(res => res.data)
+    .then((res) => {
+      const data = res.data;
+      data.splice(0, 1);
+      return data;
+    })
     .catch(err => console.log(err)),
 });

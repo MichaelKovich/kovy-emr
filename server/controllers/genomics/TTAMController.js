@@ -50,10 +50,7 @@ const getReports = (req, res, next) => {
       headers,
       json: true,
     })
-    .then((response) => {
-      console.log(response);
-      return res.status(200).json(response.data);
-    })
+    .then(response => res.status(200).json(response.data))
     .catch(err => console.log(err));
 };
 

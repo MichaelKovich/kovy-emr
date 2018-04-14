@@ -23,7 +23,6 @@ class Genomics extends Component {
       })
       .then((response) => {
         if (this.props.genomicsToken) {
-          console.log('Props: ', this.props.genomicsToken);
           this.props.history.push('/patients/genomics/reports');
         } else {
           this.props.history.push('/patients/genomics/authorization');
