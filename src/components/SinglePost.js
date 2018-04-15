@@ -133,6 +133,7 @@ class SinglePost extends Component {
                     </div>
                   </div>
                 </div>
+                
                 <div className="card my-4">
                   <h5 className="card-header" style={{color: 'white', backgroundColor: '#343a40'}}>
                     Welcome!
