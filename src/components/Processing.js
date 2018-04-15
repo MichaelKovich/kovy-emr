@@ -15,9 +15,9 @@ class Processing extends Component {
       })
       .then((response) => {
         if (this.props.physician) {
-          this.props.history.push('/providers');
+          this.props.history.push('/providers/blog');
         } else {
-          this.props.history.push('/patients');
+          this.props.history.push('/patients/blog');
         }
       })
       .catch(err => console.log(err));

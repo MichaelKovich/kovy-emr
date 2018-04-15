@@ -7,10 +7,13 @@ import Processing from './components/Processing';
 import Inbox from './components/Inbox';
 import Profile from './components/Profile';
 import Footer from './components/subcomponents/Footer';
-import NotFound from './components/subcomponents/NotFound';
+import NotFound from './components/NotFound';
+import Blog from './components/Blog';
+import SinglePost from './components/SinglePost';
 
 // PATIENT COMPONENTS
 import Patients from './components/patients/Patients';
+import PatientDashboard from './components/patients/PatientDashboard';
 import Visits from './components/patients/Visits';
 import Medications from './components/patients/Medications';
 import Billing from './components/patients/Billing';
@@ -22,6 +25,7 @@ import GenomicsAuthorization from './components/patients/GenomicsAuthorization';
 
 // PROVIDER COMPONENTS
 import Providers from './components/providers/Providers';
+import ProviderDashboard from './components/providers/ProviderDashboard';
 import MedicationsAdd from './components/providers/MedicationsAdd';
 import MedicationsUpdate from './components/providers/MedicationsUpdate';
 import VisitsAdd from './components/providers/VisitsAdd';
@@ -29,6 +33,7 @@ import VisitsUpdate from './components/providers/VisitsUpdate';
 import SendMessage from './components/providers/SendMessage';
 import BillingAdd from './components/providers/BillingAdd';
 import BillingUpdate from './components/providers/BillingUpdate';
+import CreatePost from './components/CreatePost';
 
 export default (
   <Switch>
@@ -38,8 +43,7 @@ export default (
     <Route
       component={() => (
         <div>
-          <Patients />
-          <Footer />
+          <PatientDashboard />
         </div>
       )}
       exact
@@ -146,12 +150,32 @@ export default (
       )}
       path="/patients/genomics/authorization"
     />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <Blog />
+          <Footer />
+        </div>
+      )}
+      exact
+      path="/patients/blog"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Patients />
+          <SinglePost />
+          <Footer />
+        </div>
+      )}
+      path="/patients/blog/:id"
+    />
 
     <Route
       component={() => (
         <div>
-          <Providers />
-          <Footer />
+          <ProviderDashboard />
         </div>
       )}
       exact
@@ -248,6 +272,39 @@ export default (
       )}
       path="/providers/profile"
     />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <Blog />
+          <Footer />
+        </div>
+      )}
+      exact
+      path="/providers/blog"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <CreatePost />
+          <Footer />
+        </div>
+      )}
+      exact
+      path="/providers/blog/create"
+    />
+    <Route
+      component={() => (
+        <div>
+          <Providers />
+          <SinglePost />
+          <Footer />
+        </div>
+      )}
+      path="/providers/blog/:id"
+    />
+
     <Route path="/404" component={NotFound} />
     <Redirect from="*" to="/404" />
   </Switch>

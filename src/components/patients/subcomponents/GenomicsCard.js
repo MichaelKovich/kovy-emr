@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import '../../../App.css';
 
@@ -34,7 +35,9 @@ function genomicsCard(props) {
           <span style={{fontWeight: '600'}}>Biological Explanation: </span>
           {props.explanation}
         </p>
-        <button className="card-link">Learn More</button>
+        <Link to="/patients/blog" className="btn btn-outline-primary">
+          Read More
+        </Link>
       </div>
     </div>
   );

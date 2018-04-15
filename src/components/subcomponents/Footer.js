@@ -11,19 +11,19 @@ const footer = () => (
       </h3>
 
       <p className="footer-links">
-        <a href="/" style={{marginRight: '1%'}}>
+        <a href="#" style={{marginRight: '1%'}}>
           Home
         </a>
-        <a href="/blog" style={{marginRight: '1%'}}>
+        <a href="#" style={{marginRight: '1%'}}>
           Blog
         </a>
-        <a href="/about" style={{marginRight: '1%'}}>
+        <a href="#" style={{marginRight: '1%'}}>
           About
         </a>
-        <a href="/FAQ" style={{marginRight: '1%'}}>
+        <a href="#" style={{marginRight: '1%'}}>
           FAQ
         </a>
-        <a href="/contact">Contact</a>
+        <a href="#">Contact</a>
       </p>
 
       <p className="footer-company-name">Michael Kovich &copy; 2018</p>

@@ -3,7 +3,7 @@ import ReactS3Uploader from 'react-s3-uploader';
 
 import '../../App.css';
 
-class ProfilePictureCard extends Component {
+class PostImage extends Component {
   constructor(props) {
     super(props);
 
@@ -21,18 +21,6 @@ class ProfilePictureCard extends Component {
   render() {
     return (
       <div style={{fontFamily: 'Raleway'}}>
-        <img
-          src={this.props.source}
-          alt="User's Profile"
-          style={{
-            width: '250px',
-            height: '250px',
-            borderStyle: 'solid',
-            borderWidth: '1px',
-          }}
-        />
-        <br />
-        <br />
         <ReactS3Uploader
           signingUrl="/s3/sign"
           signingUrlMethod="GET"
@@ -47,7 +35,7 @@ class ProfilePictureCard extends Component {
           autoUpload
         />
         {this.state.completed === 0 ? (
-          <p>Please select an image to upload.</p>
+          <p>Please select an image for your post.</p>
         ) : this.state.completed === 100 ? (
           <p>Photo received. Click "Update" when ready!</p>
         ) : (
@@ -69,4 +57,4 @@ class ProfilePictureCard extends Component {
   }
 }
 
-export default ProfilePictureCard;
+export default PostImage;

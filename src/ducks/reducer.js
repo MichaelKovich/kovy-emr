@@ -21,6 +21,9 @@ const initialState = {
   profileData: [], // Stores the user's profile details,
   genomicsToken: false, // Indicates whether the user has a 23AndMe token.
   genomicsData: [], // Stores the user's genomics data, retrieved from 23AndMe.
+  blogPosts: [], // Contains all of the application's blog posts
+  singlePost: [], // Displays a single post (selected by the user)
+  comments: [], // Displays all comments left on a single post (selected by the user)
 };
 
 // AUTHENTICATION ACTION TYPES
@@ -45,6 +48,9 @@ const RETRIEVE_MY_PROVIDERS = 'RETRIEVE_MY_PROVIDERS';
 const RETRIEVE_MY_PROFILE = 'RETRIEVE_MY_PROFILE';
 const CHECK_TOKEN = 'CHECK_TOKEN';
 const RETRIEVE_REPORTS = 'RETRIEVE_REPORTS';
+const RETRIEVE_BLOG_POSTS = 'RETRIEVE_BLOG_POSTS';
+const RETRIEVE_SINGLE_POST = 'RETRIEVE_SINGLE_POST';
+const RETRIEVE_COMMENTS = 'RETRIEVE_COMMENTS';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
@@ -161,6 +167,24 @@ export default function reducer(state = initialState, action) {
 
     case `${RETRIEVE_REPORTS}_FULFILLED`:
       return {...state, genomicsData: action.payload, isLoading: false};
+
+    case `${RETRIEVE_BLOG_POSTS}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_BLOG_POSTS}_FULFILLED`:
+      return {...state, blogPosts: action.payload, isLoading: false};
+
+    case `${RETRIEVE_SINGLE_POST}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_SINGLE_POST}_FULFILLED`:
+      return {...state, singlePost: action.payload, isLoading: false};
+
+    case `${RETRIEVE_COMMENTS}_PENDING`:
+      return {...state, isLoading: true};
+
+    case `${RETRIEVE_COMMENTS}_FULFILLED`:
+      return {...state, comments: action.payload, isLoading: false};
 
     default:
       return state;
@@ -312,5 +336,29 @@ export const retrieveReports = () => ({
       data.splice(0, 1);
       return data;
     })
+    .catch(err => console.log(err)),
+});
+
+export const retrieveBlogPosts = () => ({
+  type: RETRIEVE_BLOG_POSTS,
+  payload: axios
+    .get('/data/get-posts')
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveSinglePost = id => ({
+  type: RETRIEVE_SINGLE_POST,
+  payload: axios
+    .get(`/data/get-single-post/${id}`)
+    .then(res => res.data)
+    .catch(err => console.log(err)),
+});
+
+export const retrieveComments = id => ({
+  type: RETRIEVE_COMMENTS,
+  payload: axios
+    .get(`/data/get-comments/${id}`)
+    .then(res => res.data)
     .catch(err => console.log(err)),
 });

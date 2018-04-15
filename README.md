@@ -2,7 +2,7 @@
 
 ### Technologies and Packages
 
-Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, React Router, Redux, Redux Promise Middleware, Axios, Request Promise, Twilio, Stripe, Amazon SES, Nodemailer, Amazon S3, React S3 Uploader, Moment.js, 23andMe API, Digital Ocean, Ubuntu, Nginx, Heroku PostgreSQL
+Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, React Router, Redux, Redux Promise Middleware, Axios, Request Promise, Twilio, Stripe, Amazon SES, Nodemailer, Amazon S3, React S3 Uploader, Moment.js, 23andMe API, React Quill, React HTML Parser, Digital Ocean, Ubuntu, Nginx, Heroku PostgreSQL
 
 ### Provider and Patient Front-Ends
 
@@ -34,7 +34,11 @@ When a user accesses the platform for the first time, they receive a welcome ema
 
 ### Amazon S3
 
-Patients and physicians have the ability to add a photo of themselves to their profile. Images are uploaded to, and served from, an Amazon S3 bucket.
+Amazon S3 is used for patient and physician profile pictures and blog post image content. User-submitted content is pushed to the S3 Bucket using the React S3 Uploader.
+
+### Blog
+
+The application has a blog where providers can post content that is accessible to all registered users. Content consists of a title, an image (uploaded to and delivered from Amazon S3), an excerpt, primary content, and the date on which the post was published (using Moment.js). Patients and providers can leave comments on posts. Content can be written within the application thanks to the React Quill WYSIWYG text editor.
 
 ### Hosting (Digital Ocean)
 

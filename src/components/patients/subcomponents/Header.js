@@ -30,11 +30,6 @@ class Header extends Component {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/patients">
-                Dashboard
-              </Link>
-            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -107,7 +102,7 @@ class Header extends Component {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
+              <Link className="nav-link" to="/patients/blog">
                 Blog
               </Link>
             </li>

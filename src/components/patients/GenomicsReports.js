@@ -7,10 +7,6 @@ import Loading from '../subcomponents/Loading';
 import '../../App.css';
 
 class GenomicsReports extends Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     this.props.retrieveReports();
   }

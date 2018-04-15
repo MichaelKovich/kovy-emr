@@ -44,6 +44,11 @@ const {updateProfile} = require(`${__dirname}/controllers/data/profileController
 const {receiveCode} = require(`${__dirname}/controllers/genomics/TTAMController`);
 const {checkToken} = require(`${__dirname}/controllers/genomics/TTAMController`);
 const {getReports} = require(`${__dirname}/controllers/genomics/TTAMController`);
+const {getPosts} = require(`${__dirname}/controllers/blog/blogController`);
+const {getSinglePost} = require(`${__dirname}/controllers/blog/blogController`);
+const {getComments} = require(`${__dirname}/controllers/blog/blogController`);
+const {submitComment} = require(`${__dirname}/controllers/blog/blogController`);
+const {submitPost} = require(`${__dirname}/controllers/blog/blogController`);
 
 // TEST
 const {registrationEmail} = require(`${__dirname}/nodemailer.js`);
@@ -130,6 +135,8 @@ app.get('/patients/profile', sessionChecker, dashboardRouter);
 app.get('/patients/genomics', sessionChecker, dashboardRouter);
 app.get('/patients/genomics/reports', sessionChecker, dashboardRouter);
 app.get('/patients/genomics/authorization', sessionChecker, dashboardRouter);
+app.get('/patients/blog', sessionChecker, dashboardRouter);
+app.get('/patients/blog/*', sessionChecker, dashboardRouter);
 
 // PATIENT DATA ROUTES
 app.get('/patients/data/visits', sessionChecker, getVisits);
@@ -150,6 +157,8 @@ app.get('/providers/messages/send', sessionChecker, physicianChecker, dashboardR
 app.get('/providers/billing/add', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/billing/update', sessionChecker, physicianChecker, dashboardRouter);
 app.get('/providers/profile', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/blog', sessionChecker, physicianChecker, dashboardRouter);
+app.get('/providers/blog/*', sessionChecker, physicianChecker, dashboardRouter);
 
 // PROVIDER DATA ROUTES
 app.get('/providers/data/patients', sessionChecker, physicianChecker, getPatients);
@@ -175,12 +184,17 @@ app.get(
   physicianChecker,
   getBillingItemsMaster,
 );
+app.post('/providers/data/submit-post', sessionChecker, physicianChecker, submitPost);
 
 // UNIVERSAL DATA ROUTES
 app.get('/data/get-messages', sessionChecker, getMessages);
 app.post('/data/send-message', sessionChecker, sendMessage);
 app.get('/data/get-profile', sessionChecker, getProfile);
 app.put('/data/update-profile', sessionChecker, updateProfile);
+app.get('/data/get-posts', sessionChecker, getPosts);
+app.get('/data/get-single-post/:id', sessionChecker, getSinglePost);
+app.get('/data/get-comments/:id', sessionChecker, getComments);
+app.post('/data/submit-comment', sessionChecker, submitComment);
 
 // PAYMENT DATA ROUTE
 app.post('/patients/billing/charge', sessionChecker, stripeCharge);

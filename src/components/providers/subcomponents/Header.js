@@ -32,11 +32,6 @@ class Header extends Component {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/providers">
-                Dashboard
-              </Link>
-            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -111,10 +106,26 @@ class Header extends Component {
                 Profile
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="#">
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 Blog
-              </Link>
+              </a>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/providers/blog">
+                  See Posts
+                </Link>
+                <Link className="dropdown-item" to="/providers/blog/create">
+                  Create a Post
+                </Link>
+              </div>
             </li>
           </ul>
         </div>
