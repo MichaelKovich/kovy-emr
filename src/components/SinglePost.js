@@ -59,9 +59,9 @@ class SinglePost extends Component {
 
     let post = '';
 
-    this.props.singlePost && this.props.singlePost.length > 0
-      ? (post = this.props.singlePost[0])
-      : null;
+    if (this.props.singlePost && this.props.singlePost.length > 0) {
+      post = this.props.singlePost[0];
+    }
 
     return (
       <div>
@@ -133,7 +133,7 @@ class SinglePost extends Component {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="card my-4">
                   <h5 className="card-header" style={{color: 'white', backgroundColor: '#343a40'}}>
                     Welcome!

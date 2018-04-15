@@ -13,7 +13,10 @@ function visitCard(props) {
         <p className="card-text">
           Dr. {props.givenname} {props.familyname}
         </p>
-        <button className="card-link" onClick={() => props.onCancel(props.visitid, props.date)}>
+        <button
+          className="card-link btn btn-secondary btn-sm"
+          onClick={() => props.onCancel(props.visitid, props.date)}
+        >
           Cancel Visit
         </button>
       </div>

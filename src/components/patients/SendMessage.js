@@ -96,7 +96,7 @@ class SendMessage extends Component {
             />
           </div>
           <button type="submit" className="btn btn-secondary">
-            Apply
+            Send
           </button>
         </form>
       </div>

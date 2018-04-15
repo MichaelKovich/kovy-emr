@@ -71,15 +71,17 @@ class Profile extends Component {
 
   render() {
     const styles = {
-      width: '70%',
+      width: '80%',
       height: '80%',
-      margin: '0 auto',
       marginTop: '1%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      minHeight: '60vh',
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'center',
-      marginBottom: '10px',
+      alignItems: 'center',
       fontFamily: 'Raleway',
     };
 

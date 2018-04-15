@@ -99,7 +99,9 @@ class Billing extends Component {
           amount={this.state.amount}
           name="Iyashi EMR"
           email={this.props.username}
-        />
+        >
+          <button className="btn btn-secondary">Pay Now</button>
+        </StripeCheckout>
       </div>
     );
   }
