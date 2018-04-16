@@ -18,37 +18,54 @@ const {sessionControl} = require(`${__dirname}/controllers/auth/sessionControlle
 const {meAuthentication} = require(`${__dirname}/controllers/auth/meController`);
 
 // DATA MANIPULATION AND RETRIEVAL CONTROLLERS
-const {getPatients} = require(`${__dirname}/controllers/data/patientsController`);
-const {getProviders} = require(`${__dirname}/controllers/data/providersController`);
-const {addMedication} = require(`${__dirname}/controllers/data/medicationsController`);
-const {getMedicationsMaster} = require(`${__dirname}/controllers/data/medicationsController`);
-const {updateMedication} = require(`${__dirname}/controllers/data/medicationsController`);
-const {getMedications} = require(`${__dirname}/controllers/data/medicationsController`);
-const {addVisit} = require(`${__dirname}/controllers/data/visitsController`);
-const {getVisitsMaster} = require(`${__dirname}/controllers/data/visitsController`);
-const {updateVisit} = require(`${__dirname}/controllers/data/visitsController`);
-const {cancelVisit} = require(`${__dirname}/controllers/data/visitsController`);
-const {getVisits} = require(`${__dirname}/controllers/data/visitsController`);
-const {getMyPatients} = require(`${__dirname}/controllers/data/patientsController`);
-const {getMyColleagues} = require(`${__dirname}/controllers/data/providersController`);
-const {sendMessage} = require(`${__dirname}/controllers/data/messagesController`);
-const {getMessages} = require(`${__dirname}/controllers/data/messagesController`);
-const {getBillingItems} = require(`${__dirname}/controllers/billing/billingController`);
-const {getBillingHistory} = require(`${__dirname}/controllers/billing/billingController`);
-const {addBill} = require(`${__dirname}/controllers/billing/billingController`);
-const {updateBill} = require(`${__dirname}/controllers/billing/billingController`);
-const {getBillingItemsMaster} = require(`${__dirname}/controllers/billing/billingController`);
-const {getMyProviders} = require(`${__dirname}/controllers/data/providersController`);
-const {getProfile} = require(`${__dirname}/controllers/data/profileController`);
-const {updateProfile} = require(`${__dirname}/controllers/data/profileController`);
-const {receiveCode} = require(`${__dirname}/controllers/genomics/TTAMController`);
-const {checkToken} = require(`${__dirname}/controllers/genomics/TTAMController`);
-const {getReports} = require(`${__dirname}/controllers/genomics/TTAMController`);
-const {getPosts} = require(`${__dirname}/controllers/blog/blogController`);
-const {getSinglePost} = require(`${__dirname}/controllers/blog/blogController`);
-const {getComments} = require(`${__dirname}/controllers/blog/blogController`);
-const {submitComment} = require(`${__dirname}/controllers/blog/blogController`);
-const {submitPost} = require(`${__dirname}/controllers/blog/blogController`);
+const {getPatients, getMyPatients} = require(`${__dirname}/controllers/data/patientsController`);
+
+const {
+  getProviders,
+  getMyColleagues,
+  getMyProviders,
+} = require(`${__dirname}/controllers/data/providersController`);
+
+const {
+  addMedication,
+  getMedicationsMaster,
+  updateMedication,
+  getMedications,
+} = require(`${__dirname}/controllers/data/medicationsController`);
+
+const {
+  addVisit,
+  getVisitsMaster,
+  updateVisit,
+  cancelVisit,
+  getVisits,
+} = require(`${__dirname}/controllers/data/visitsController`);
+
+const {sendMessage, getMessages} = require(`${__dirname}/controllers/data/messagesController`);
+
+const {
+  getBillingItems,
+  getBillingHistory,
+  addBill,
+  updateBill,
+  getBillingItemsMaster,
+} = require(`${__dirname}/controllers/billing/billingController`);
+
+const {getProfile, updateProfile} = require(`${__dirname}/controllers/data/profileController`);
+
+const {
+  receiveCode,
+  checkToken,
+  getReports,
+} = require(`${__dirname}/controllers/genomics/TTAMController`);
+
+const {
+  getPosts,
+  getSinglePost,
+  getComments,
+  submitComment,
+  submitPost,
+} = require(`${__dirname}/controllers/blog/blogController`);
 
 // BILLING CONTROLLER
 const {stripeCharge} = require(`${__dirname}/controllers/billing/stripeController`);
@@ -200,7 +217,7 @@ app.get('/receive_code', sessionChecker, receiveCode);
 app.get('/data/token', sessionChecker, checkToken);
 app.get('/data/get-reports', sessionChecker, getReports);
 
-// (TEST) NODEMAILER
+// (TEST) NODEMAILER / LEAVING THIS HERE FOR LATER (PLANS TO BUILD A MORE ROBUST EMAIL)
 // const {registrationEmail} = require(`${__dirname}/nodemailer.js`);
 // app.get('/data/send', sessionChecker, registrationEmail);
 
