@@ -1,20 +1,19 @@
-## Iyashi EMR | Electronic Medical Record Application
+## IyashiEMR | Electronic Medical Record Application
 
 ### Technologies and Packages
-
-Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, React Router, Redux, Redux Promise Middleware, Axios, Request Promise, Twilio, Stripe, Amazon SES, Nodemailer, Amazon S3, React S3 Uploader, Moment.js, 23andMe API, React Quill, React HTML Parser, Digital Ocean, Ubuntu, Nginx, Heroku PostgreSQL
+Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, React Router, Redux, Redux Promise Middleware, Axios, Request Promise, Twilio, Stripe, Amazon SES, Nodemailer, Amazon S3, React S3 Uploader, Moment.js, 23andMe API, React Quill, React HTML Parser, Heroku, Digital Ocean, Ubuntu, Nginx, Heroku
 
 ### Provider and Patient Front-Ends
 
-Providers are able to view their dashboard, check their messages, send messages to patients with whom they've had, or will have, visits and their colleagues, update their profile, add medications to a patient's record, update a patient's medication record, add a visit with a patient, update a visit. They can also opt-in to receive SMS notifications of new messages and cancelled visits.
+Providers are able to check their messages, send messages to patients with whom they've had, or will have, visits and their colleagues, update their profile, upload a profile picture, add medications to a patient's record, update a patient's medication record, add a visit with a patient, update visits, submit and update billing charges to a patient's record, and publish content on the blog. Providers can opt-in to receive SMS notifications of new messages and cancelled visits.
 
-Patients are able to view their dashboard, their medications (name, dosage, and whether it's a prescription or OTC), and their visits (date, type of visit, and the provider). Patients can cancel visits (so long as they're at least 24 hours in the future), pay their outstanding medical bills, view their billing history, update their profile, and opt-in to receive SMS notifications of new messages.
+Patients are able to check their messages, send messages to physicians with whom they've had, or will have, visits, view their medications, view their previous and upcoming visits (date, type of visit, and the provider), and browse the application's blog. Patients can cancel visits (so long as they're at least 24 hours in the future), pay their outstanding medical bills, view their billing history, update their profile, and opt-in to receive SMS notifications of new messages.
+
+Patients also have the ability to connect to their 23andMe accounts and view personalized genomics reports (details below).
 
 ### Security and Authentication
 
-Authentication is handled via Auth0 and users are added to a PostgreSQL database. Patient routes are protected by session checker middleware and provider routes are protected by both session checker middleware and 'provider status' checker middleware. Data handling and retrieval endpoints are also protected in this way so as to restrict such functionality (and data access) to appropriately permissioned parties.
-
-The application also has a valid SSL certificate and runs over HTTPS.
+Authentication is handled via Auth0 and users are added to a PostgreSQL database. Patient routes are protected by session checker middleware and provider routes are protected by both session checker middleware and 'provider status' checker middleware. Data handling and retrieval endpoints are also protected in this way so as to restrict such functionality (and data access) to appropriately permissioned parties. The application also has a valid SSL certificate and runs over HTTPS.
 
 ### Messages (Twilio, Moment.js)
 
@@ -22,7 +21,7 @@ Users have the ability to indicate whether they'd like to receive notifications 
 
 ### Billing (Stripe)
 
-Patients have the ability to pay outstanding bills from within the application. This process is handled by Stripe and the react-stripe-checkout package. The user's credit card information is not stored or processed in the application. Instead, it's tokenized via Stripe.js and the token is shipped to Stripe via Express. This enhances the security of the process and reduces compliance burdens and overall liability. When selecting a bill to pay, the user can see the amount and a brief description of the nature of the charge. When the transaction is complete, the bill is marked as paid and no longer visible on the billing page.
+Patients have the ability to pay outstanding bills from within the application. This process is handled by Stripe and the react-stripe-checkout package. The user's credit card information is not stored or processed in the application. Instead, it's tokenized via Stripe.js and the token is shipped to Stripe via Express. This enhances the security of the process and reduces compliance burdens and overall liability. When selecting a bill to pay, the user can see the amount and a brief description of the nature of the charge. When the transaction is complete, the bill is marked as paid and no longer visible on the outstanding bills page.
 
 ### Nodemailer and Amazon SES
 
