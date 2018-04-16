@@ -98,7 +98,7 @@ class SinglePost extends Component {
                     </form>
                   </div>
                 </div>
-                {this.props.comments && this.props.comments.length > 0 ? mappedComments : <Loading />}
+                {this.props.comments ? mappedComments : <Loading />}
               </div>
               <div className="col-md-4">
                 <div className="card my-4">
