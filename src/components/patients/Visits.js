@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {retrieveVisits} from '../../ducks/reducer';
+import {withRouter} from 'react-router';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -21,7 +22,7 @@ class Visits extends Component {
 
   cancelVisit(visitid, date) {
     // Checks whether the date is in the future.
-    if (moment(date).isAfter(moment())) {
+    if (moment(date, 'MM-DD-YYYY').isAfter(moment())) {
       axios
         .put(`/patients/data/cancel-visit/${visitid}`, {date})
         .then(res => this.props.retrieveVisits())
@@ -75,4 +76,4 @@ class Visits extends Component {
   }
 }
 
-export default connect(state => state, {retrieveVisits})(Visits);
+export default withRouter(connect(state => state, {retrieveVisits})(Visits));

@@ -36,7 +36,6 @@ class Billing extends Component {
     if (this.state.amount === 0) {
       return alert('Please select a bill first!');
     }
-    console.log(this.state);
 
     axios
       .post('/patients/billing/charge', {

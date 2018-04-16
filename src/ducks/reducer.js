@@ -54,8 +54,6 @@ const RETRIEVE_COMMENTS = 'RETRIEVE_COMMENTS';
 
 // REDUCER
 export default function reducer(state = initialState, action) {
-  console.log('REDUCER HIT: ', action);
-
   switch (action.type) {
     case INITIAL_AUTHENTICATION:
       return {...state, username: action.payload};
