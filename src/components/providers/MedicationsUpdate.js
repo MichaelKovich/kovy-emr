@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {retrievePatients, retrieveMedicationsMaster} from '../../ducks/reducer';
-
 import axios from 'axios';
+
+import Loading from '../subcomponents/Loading';
 import '../../App.css';
 
 class MedicationsUpdate extends Component {
@@ -22,7 +23,7 @@ class MedicationsUpdate extends Component {
     this.updateMedication = this.updateMedication.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.retrievePatients();
     this.props.retrieveMedicationsMaster();
   }
@@ -103,81 +104,89 @@ class MedicationsUpdate extends Component {
       fontFamily: 'Raleway',
     };
 
+    let mappedPatients = [];
+
     // Mapping over all the patients in the database for use as options in the form below.
-    const mappedPatients = this.props.patients.map(patient => (
-      <option value={patient.userid}>
-        {patient.userid} | {patient.given_name} {patient.family_name}
-      </option>
-    ));
+    if (this.props.patients && this.props.patients.length > 0) {
+      mappedPatients = this.props.patients.map(patient => (
+        <option value={patient.userid}>
+          {patient.userid} | {patient.given_name} {patient.family_name}
+        </option>
+      ));
+    }
 
     return (
       <div style={styles}>
-        <form onSubmit={this.updateMedication}>
-          <h2>Update Medication</h2>
-          <hr />
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Patient:</label>
-            <select
-              className="form-control"
-              id="exampleFormControlSelect1"
-              onChange={event => this.medicationFilter(event.target.value)}
-            >
-              <option selected>Please select a patient.</option>
-              {mappedPatients}
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Medication:</label>
-            <select
-              value={this.state.medicationid}
-              className="form-control"
-              id="exampleFormControlSelect1"
-              onChange={event => this.initialMedicationState(event.target.value)}
-            >
-              <option value="holder">Please select a medication.</option>
-              {this.state.mappedMedications}
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Medication Name:</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              value={this.state.medication_name}
-              maxLength="60"
-              required
-              onChange={event => this.setState({medication_name: event.target.value})}
-              rows="1"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Dosage:</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              value={this.state.dosage}
-              maxLength="120"
-              required
-              onChange={event => this.setState({dosage: event.target.value})}
-              rows="1"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Prescription:</label>
-            <select
-              value={this.state.prescribed}
-              className="form-control"
-              id="exampleFormControlSelect1"
-              onChange={event => this.setState({prescribed: event.target.value})}
-            >
-              <option value>True</option>
-              <option value={false}>False</option>
-            </select>
-          </div>
-          <button type="submit" className="btn btn-secondary">
-            Apply
-          </button>
-        </form>
+        {this.props.patients && this.props.patients.length > 0 ? (
+          <form onSubmit={this.updateMedication}>
+            <h2>Update Medication</h2>
+            <hr />
+            <div className="form-group">
+              <label htmlFor="exampleFormControlSelect1">Patient:</label>
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={event => this.medicationFilter(event.target.value)}
+              >
+                <option selected>Please select a patient.</option>
+                {mappedPatients}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlSelect1">Medication:</label>
+              <select
+                value={this.state.medicationid}
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={event => this.initialMedicationState(event.target.value)}
+              >
+                <option value="holder">Please select a medication.</option>
+                {this.state.mappedMedications}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Medication Name:</label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                value={this.state.medication_name}
+                maxLength="60"
+                required
+                onChange={event => this.setState({medication_name: event.target.value})}
+                rows="1"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Dosage:</label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                value={this.state.dosage}
+                maxLength="120"
+                required
+                onChange={event => this.setState({dosage: event.target.value})}
+                rows="1"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlSelect1">Prescription:</label>
+              <select
+                value={this.state.prescribed}
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={event => this.setState({prescribed: event.target.value})}
+              >
+                <option value>True</option>
+                <option value={false}>False</option>
+              </select>
+            </div>
+            <button type="submit" className="btn btn-secondary">
+              Apply
+            </button>
+          </form>
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }

@@ -89,33 +89,31 @@ class Profile extends Component {
 
     return (
       <div style={styles}>
-        <div style={{marginRight: '2%'}}>
-          {profileData && profileData.length > 0 ? (
-            <ProfileForm
-              update={this.updateProfile}
-              given_name={profileData[0].given_name}
-              family_name={profileData[0].family_name}
-              address={profileData[0].address}
-              city={profileData[0].city}
-              stateabbrev={profileData[0].state}
-              zip={profileData[0].zip}
-              phone={profileData[0].phone}
-              notifications={profileData[0].notifications}
-            />
-          ) : (
-            <Loading />
-          )}
-        </div>
-        <div style={{marginTop: '1%'}}>
-          {profileData && profileData.length > 0 ? (
-            <ProfilePictureCard
-              source={profileData[0].picture}
-              updatePicture={this.onUploadFinish}
-            />
-          ) : (
-            <Loading />
-          )}
-        </div>
+        {profileData && profileData.length > 0 ? (
+          <div style={{display: 'flex', justifyContent: 'space-between'}}>
+            <div style={{marginRight: '2%'}}>
+              <ProfileForm
+                update={this.updateProfile}
+                given_name={profileData[0].given_name}
+                family_name={profileData[0].family_name}
+                address={profileData[0].address}
+                city={profileData[0].city}
+                stateabbrev={profileData[0].state}
+                zip={profileData[0].zip}
+                phone={profileData[0].phone}
+                notifications={profileData[0].notifications}
+              />
+            </div>
+            <div style={{marginTop: '1%'}}>
+              <ProfilePictureCard
+                source={profileData[0].picture}
+                updatePicture={this.onUploadFinish}
+              />
+            </div>
+          </div>
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }

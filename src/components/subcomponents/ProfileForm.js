@@ -184,7 +184,7 @@ class ProfileForm extends Component {
           </div>
         </div>
         <button type="submit" className="btn btn-secondary">
-          Update
+          Apply
         </button>
       </form>
     );

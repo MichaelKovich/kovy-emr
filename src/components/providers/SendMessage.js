@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {retrieveMyPatients, retrieveMyColleagues} from '../../ducks/reducer';
 import axios from 'axios';
 
+import Loading from '../subcomponents/Loading';
 import '../../App.css';
 
 class SendMessage extends Component {
@@ -71,52 +72,56 @@ class SendMessage extends Component {
 
     return (
       <div style={styles}>
-        <form onSubmit={this.sendMessage}>
-          <h2>Send a Message</h2>
-          <hr />
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Recipient:</label>
-            <select
-              className="form-control"
-              id="exampleFormControlSelect1"
-              onChange={event => this.setState({recipientid: event.target.value})}
-            >
-              <option selected>Please select a recipient:</option>
-              <hr />
-              <option disabled>Patients:</option>
-              {this.props.myPatients && this.props.myPatients.length > 0 ? mappedPatients : null}
-              <hr />
-              <option disabled>Providers:</option>
-              {this.props.myColleagues && this.props.myColleagues.length > 0
-                ? mappedProviders
-                : null}
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Subject:</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              maxLength="80"
-              required
-              onChange={event => this.setState({subject: event.target.value})}
-              rows="1"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Message:</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              required
-              onChange={event => this.setState({content: event.target.value})}
-              rows="3"
-            />
-          </div>
-          <button type="submit" className="btn btn-secondary">
-            Apply
-          </button>
-        </form>
+        {this.props.myPatients && this.props.myPatients.length > 0 ? (
+          <form onSubmit={this.sendMessage}>
+            <h2>Send a Message</h2>
+            <hr />
+            <div className="form-group">
+              <label htmlFor="exampleFormControlSelect1">Recipient:</label>
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={event => this.setState({recipientid: event.target.value})}
+              >
+                <option selected>Please select a recipient:</option>
+                <hr />
+                <option disabled>Patients:</option>
+                {this.props.myPatients && this.props.myPatients.length > 0 ? mappedPatients : null}
+                <hr />
+                <option disabled>Providers:</option>
+                {this.props.myColleagues && this.props.myColleagues.length > 0
+                  ? mappedProviders
+                  : null}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Subject:</label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                maxLength="80"
+                required
+                onChange={event => this.setState({subject: event.target.value})}
+                rows="1"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Message:</label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                required
+                onChange={event => this.setState({content: event.target.value})}
+                rows="3"
+              />
+            </div>
+            <button type="submit" className="btn btn-secondary">
+              Send
+            </button>
+          </form>
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }

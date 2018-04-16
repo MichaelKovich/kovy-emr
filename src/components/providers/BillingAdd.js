@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {retrievePatients} from '../../ducks/reducer';
-
 import axios from 'axios';
+
+import Loading from '../subcomponents/Loading';
 import '../../App.css';
 
 class BillingAdd extends Component {
@@ -64,55 +65,59 @@ class BillingAdd extends Component {
 
     return (
       <div style={styles}>
-        <form onSubmit={this.billingAdd}>
-          <h2>Add Bill</h2>
-          <hr />
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Patient:</label>
-            <select
-              className="form-control"
-              id="exampleFormControlSelect1"
-              required
-              onChange={event => this.setState({patientid: event.target.value})}
-            >
-              <option selected disabled>
-                Please select a patient.
-              </option>
-              {this.props.patients && this.props.patients.length > 0 ? mappedPatients : null}
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Bill Description:</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              maxLength="60"
-              required
-              rows="1"
-              onChange={event => this.setState({description: event.target.value})}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Amount:</label>
-            <input
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              maxLength="9"
-              type="number"
-              placeholder="Enter the amount in the form xx.xx"
-              min="0"
-              step="0.01"
-              required
-              rows="1"
-              onChange={event =>
-                this.setState({amount: Number(event.target.value.replace(/[$,.]/g, ''))})
-              }
-            />
-          </div>
-          <button type="submit" className="btn btn-secondary">
-            Add
-          </button>
-        </form>
+        {this.props.patients && this.props.patients.length > 0 ? (
+          <form onSubmit={this.billingAdd}>
+            <h2>Add Bill</h2>
+            <hr />
+            <div className="form-group">
+              <label htmlFor="exampleFormControlSelect1">Patient:</label>
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                required
+                onChange={event => this.setState({patientid: event.target.value})}
+              >
+                <option selected disabled>
+                  Please select a patient.
+                </option>
+                {this.props.patients && this.props.patients.length > 0 ? mappedPatients : null}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Bill Description:</label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                maxLength="60"
+                required
+                rows="1"
+                onChange={event => this.setState({description: event.target.value})}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Amount:</label>
+              <input
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                maxLength="9"
+                type="number"
+                placeholder="Enter the amount in the form xx.xx"
+                min="0"
+                step="0.01"
+                required
+                rows="1"
+                onChange={event =>
+                  this.setState({amount: Number(event.target.value.replace(/[$,.]/g, ''))})
+                }
+              />
+            </div>
+            <button type="submit" className="btn btn-secondary">
+              Add
+            </button>
+          </form>
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }

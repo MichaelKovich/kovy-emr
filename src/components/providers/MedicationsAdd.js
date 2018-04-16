@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {retrievePatients} from '../../ducks/reducer';
-
 import axios from 'axios';
+
+import Loading from '../subcomponents/Loading';
 import '../../App.css';
 
 class MedicationsAdd extends Component {
@@ -19,7 +20,7 @@ class MedicationsAdd extends Component {
     this.medicationUpdate = this.medicationUpdate.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.retrievePatients();
   }
 
@@ -56,64 +57,72 @@ class MedicationsAdd extends Component {
       fontFamily: 'Raleway',
     };
 
-    const mappedPatients = this.props.patients.map(patient => (
-      <option value={patient.userid}>
-        {patient.userid} | {patient.given_name} {patient.family_name}
-      </option>
-    ));
+    let mappedPatients = [];
+
+    if (this.props.patients && this.props.patients.length > 0) {
+      mappedPatients = this.props.patients.map(patient => (
+        <option value={patient.userid}>
+          {patient.userid} | {patient.given_name} {patient.family_name}
+        </option>
+      ));
+    }
 
     return (
       <div style={styles}>
-        <form onSubmit={this.medicationUpdate}>
-          <h2>Add Medication</h2>
-          <hr />
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Patient:</label>
-            <select
-              className="form-control"
-              id="exampleFormControlSelect1"
-              onChange={event => this.setState({userid: event.target.value})}
-            >
-              {mappedPatients}
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Medication Name:</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              maxLength="60"
-              required
-              rows="1"
-              onChange={event => this.setState({medication_name: event.target.value})}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlTextarea1">Dosage:</label>
-            <textarea
-              className="form-control"
-              id="exampleFormControlTextarea1"
-              maxLength="120"
-              required
-              rows="1"
-              onChange={event => this.setState({dosage: event.target.value})}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Prescription:</label>
-            <select
-              className="form-control"
-              id="exampleFormControlSelect1"
-              onChange={event => this.setState({prescribed: event.target.value})}
-            >
-              <option value>True</option>
-              <option value={false}>False</option>
-            </select>
-          </div>
-          <button type="submit" className="btn btn-secondary">
-            Apply
-          </button>
-        </form>
+        {this.props.patients && this.props.patients.length > 0 ? (
+          <form onSubmit={this.medicationUpdate}>
+            <h2>Add Medication</h2>
+            <hr />
+            <div className="form-group">
+              <label htmlFor="exampleFormControlSelect1">Patient:</label>
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={event => this.setState({userid: event.target.value})}
+              >
+                {mappedPatients}
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Medication Name:</label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                maxLength="60"
+                required
+                rows="1"
+                onChange={event => this.setState({medication_name: event.target.value})}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlTextarea1">Dosage:</label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                maxLength="120"
+                required
+                rows="1"
+                onChange={event => this.setState({dosage: event.target.value})}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleFormControlSelect1">Prescription:</label>
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                onChange={event => this.setState({prescribed: event.target.value})}
+              >
+                <option value>True</option>
+                <option value={false}>False</option>
+              </select>
+            </div>
+            <button type="submit" className="btn btn-secondary">
+              Add
+            </button>
+          </form>
+        ) : (
+          <Loading />
+        )}
       </div>
     );
   }
