@@ -16,7 +16,7 @@ const receiveCode = (req, res, next) => {
         client_secret,
         grant_type: 'authorization_code',
         code: req.query.code,
-        redirect_uri: 'http://localhost:3000/receive_code/',
+        redirect_uri: 'http://iyashiemr.com/receive_code/',
         scope: 'report:all',
       },
       json: true,

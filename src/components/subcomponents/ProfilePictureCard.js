@@ -43,7 +43,7 @@ class ProfilePictureCard extends Component {
           contentDisposition="auto"
           scrubFilename={filename => filename.replace(/[^\w\d_\-.]+/gi, '')}
           inputRef={cmp => (this.uploadInput = cmp)}
-          server="http://localhost:3000"
+          server="http://iyashiemr.com"
           autoUpload
         />
         {this.state.completed === 0 ? (
