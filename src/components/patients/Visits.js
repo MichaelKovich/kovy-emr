@@ -30,7 +30,7 @@ class Visits extends Component {
     } else {
       const today = moment();
       // Checks whether the visit is scheduled for today.
-      moment(date).isSame(today, 'day')
+      moment(date, 'MM-DD-YYYY').isSame(today, 'day')
         ? alert('This visit is within the next 24 hours. Please call our office to cancel.')
         : alert('This visit was in the past!');
     }
