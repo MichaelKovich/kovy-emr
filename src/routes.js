@@ -39,7 +39,7 @@ export default (
   <Switch>
     <Route component={Homepage} exact path="/" />
     <Route component={Processing} path="/processing" />
-
+    
     <Route
       component={() => (
         <div>

@@ -50,10 +50,6 @@ const {getComments} = require(`${__dirname}/controllers/blog/blogController`);
 const {submitComment} = require(`${__dirname}/controllers/blog/blogController`);
 const {submitPost} = require(`${__dirname}/controllers/blog/blogController`);
 
-// TEST
-const {registrationEmail} = require(`${__dirname}/nodemailer.js`);
-// TEST
-
 // BILLING CONTROLLER
 const {stripeCharge} = require(`${__dirname}/controllers/billing/stripeController`);
 
@@ -96,7 +92,7 @@ app.use(
     signatureVersion: 'v4',
     headers: {'Access-Control-Allow-Origin': '*'},
     ACL: 'private',
-    uniquePrefix: true, // (4.0.2 and above) default is true, setting the attribute to false preserves the original filename in S3
+    uniquePrefix: true,
   }),
 );
 
@@ -199,14 +195,14 @@ app.post('/data/submit-comment', sessionChecker, submitComment);
 // PAYMENT DATA ROUTE
 app.post('/patients/billing/charge', sessionChecker, stripeCharge);
 
-// 23ANDME ROUTE
+// 23ANDME ROUTES
 app.get('/receive_code', sessionChecker, receiveCode);
 app.get('/data/token', sessionChecker, checkToken);
 app.get('/data/get-reports', sessionChecker, getReports);
 
-// TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
-app.get('/data/send', registrationEmail);
-// TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+// (TEST) NODEMAILER
+// const {registrationEmail} = require(`${__dirname}/nodemailer.js`);
+// app.get('/data/send', sessionChecker, registrationEmail);
 
 // 404 ROUTE
 app.get('*', dashboardRouter);
