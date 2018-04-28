@@ -127,6 +127,11 @@ class Header extends Component {
                 </Link>
               </div>
             </li>
+             <li className="nav-item">
+              <Link className="nav-link" to="/patients">
+                Patient Dash
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
