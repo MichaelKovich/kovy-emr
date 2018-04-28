@@ -106,6 +106,11 @@ class Header extends Component {
                 Blog
               </Link>
             </li>
+                   <li className="nav-item">
+              <Link className="nav-link" to="/providers">
+                Provider Dash
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
