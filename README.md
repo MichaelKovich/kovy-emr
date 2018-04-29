@@ -15,7 +15,7 @@
 The demo account comes with access to IyashiEMR.com/patients and /providers, allowing you to experience the application from both perspectives. The demo user has full permissions - including the ability to add and remove content. Feel free to experience the full functionality of the website but please be conservative with content deletion and professional with what you post (as it will be accessible to other users). Thank you!
 
 ### Technologies and Packages
-Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, React Router, Redux, Redux Promise Middleware, Axios, Request Promise, Twilio, Stripe, Amazon SES, Nodemailer, Amazon S3, React S3 Uploader, Moment.js, 23andMe API, React Quill, React HTML Parser, Heroku, Digital Ocean, Ubuntu, Nginx, Heroku
+Node, Express, Express Session, Massive, PostgreSQL, Passport, Auth0, React, React Router, Redux, Redux Promise Middleware, Axios, Request Promise, Twilio, Stripe, Amazon SES, Nodemailer, Amazon S3, React S3 Uploader, Moment.js, 23andMe API, React Quill, React HTML Parser, Heroku, Digital Ocean, Ubuntu, Nginx
 
 ### Provider and Patient Front-Ends
 
